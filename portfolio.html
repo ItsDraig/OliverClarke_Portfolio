@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oliver Clarke — Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c0b;
+    --surface: #141413;
+    --border: #252523;
+    --text: #e8e4dc;
+    --muted: #6b6860;
+    --accent: #c8a96e;
+    --accent-dim: rgba(200,169,110,0.12);
+    --green: #5a8a5a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Cursor */
+  .cursor {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--accent); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s;
+  }
+  .cursor-ring {
+    position: fixed; width: 32px; height: 32px;
+    border: 1px solid rgba(200,169,110,0.4); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+  }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 14px; height: 14px; }
+  body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 48px; height: 48px; border-color: var(--accent); }
+
+  /* Layout */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 0; border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  nav.scrolled { background: rgba(12,12,11,0.92); backdrop-filter: blur(12px); border-color: var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--accent); text-decoration: none; letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; overflow: hidden; }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 80px 80px; opacity: 0.3;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em;
+    margin-bottom: 32px; opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+  .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  .hero-name {
+    font-family: 'DM Serif Display', serif; font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 8px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.35s forwards;
+  }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-role {
+    font-family: 'DM Serif Display', serif; font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0; letter-spacing: -0.02em; color: var(--muted); margin-bottom: 40px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.45s forwards;
+  }
+  .hero-bio { max-width: 480px; color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.7s ease 0.6s forwards; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+    background: var(--accent); color: var(--bg); text-decoration: none;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #d4b87a; transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+    border: 1px solid var(--border); color: var(--muted); text-decoration: none;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--green); margin-top: 40px; opacity: 0; animation: fadeUp 0.7s ease 0.9s forwards; }
+  .status-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s ease infinite; }
+
+  /* Section base */
+  section { padding: 100px 0; border-top: 1px solid var(--border); }
+  .section-label { display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 56px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .skill-card { background: var(--surface); padding: 32px; transition: background 0.2s; }
+  .skill-card:hover { background: var(--accent-dim); }
+  .skill-icon { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px; }
+  .skill-name { font-size: 1rem; font-weight: 500; margin-bottom: 8px; color: var(--text); }
+  .skill-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+  /* Projects */
+  .projects-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .project-card { background: var(--surface); transition: background 0.2s; overflow: hidden; }
+  .project-card.open { background: var(--accent-dim); }
+  .project-row { display: grid; grid-template-columns: 1fr auto; gap: 40px; padding: 40px; align-items: start; cursor: pointer; user-select: none; }
+  .project-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+  .project-num { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+  .project-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); background: var(--accent-dim); padding: 3px 10px; letter-spacing: 0.08em; }
+  .project-title { font-family: 'DM Serif Display', serif; font-size: 1.7rem; margin-bottom: 12px; line-height: 1.2; }
+  .project-desc { font-size: 0.9rem; color: var(--muted); max-width: 560px; line-height: 1.7; }
+  .project-stack { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+  .stack-pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); border: 1px solid var(--border); padding: 4px 10px; letter-spacing: 0.06em; }
+  .project-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border: 1px solid var(--border);
+    color: var(--muted); font-size: 1.1rem; flex-shrink: 0; margin-top: 4px;
+    transition: border-color 0.2s, color 0.2s, transform 0.35s ease;
+  }
+  .project-card.open .project-toggle { border-color: var(--accent); color: var(--accent); transform: rotate(45deg); }
+
+  .project-expand { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+  .project-card.open .project-expand { grid-template-rows: 1fr; }
+  .project-expand-inner { overflow: hidden; }
+  .project-expand-content {
+    display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;
+    border-top: 1px solid var(--border);
+    padding: 28px 40px 36px; margin: 0 40px;
+  }
+  .project-detail-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .project-detail-text { font-size: 0.88rem; color: var(--text); line-height: 1.8; max-width: 540px; }
+  .project-links { display: flex; gap: 10px; flex-shrink: 0; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
+    font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
+    text-decoration: none; text-transform: uppercase;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .project-link:hover { transform: translateY(-2px); }
+  .project-link.github { border: 1px solid var(--border); color: var(--muted); }
+  .project-link.github:hover { border-color: var(--accent); color: var(--accent); }
+  .project-link.live { background: var(--accent); color: var(--bg); border: 1px solid var(--accent); }
+  .project-link.live:hover { background: #d4b87a; border-color: #d4b87a; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-text p { color: var(--muted); line-height: 1.9; margin-bottom: 20px; font-size: 0.95rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-facts { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .about-fact { background: var(--surface); padding: 20px 24px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .fact-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .fact-value { font-size: 0.88rem; color: var(--text); text-align: right; }
+
+  /* Contact */
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .contact-heading { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.15; margin-bottom: 24px; }
+  .contact-heading em { color: var(--accent); font-style: italic; }
+  .contact-sub { color: var(--muted); font-size: 0.9rem; line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .contact-link { background: var(--surface); display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; text-decoration: none; color: var(--text); transition: background 0.2s; }
+  .contact-link:hover { background: var(--accent-dim); }
+  .contact-link-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .contact-link-value { font-size: 0.9rem; }
+  .contact-link-arrow { color: var(--muted); transition: color 0.2s, transform 0.2s; font-size: 1.1rem; }
+  .contact-link:hover .contact-link-arrow { color: var(--accent); transform: translate(2px, -2px); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* Animations */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+  .reveal-delay-6 { transition-delay: 0.6s; }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .project-row { grid-template-columns: 1fr; }
+    .project-expand-content { grid-template-columns: 1fr; margin: 0 24px; }
+    .project-links { flex-wrap: wrap; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">OC.</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">Full-Stack Developer</div>
+      <h1 class="hero-name">Oliver <em>Clarke</em></h1>
+      <div class="hero-role">builds things.</div>
+      <p class="hero-bio">
+        I craft purposeful, well-engineered software — from sleek interfaces to robust backends.
+        Currently open to new opportunities and interesting problems.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary">View my work ↓</a>
+        <a href="#contact" class="btn-ghost">Get in touch →</a>
+      </div>
+      <div class="status">
+        <span class="status-dot"></span>
+        Available for opportunities
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">Skills &amp; Tools</div>
+    <div class="skills-grid">
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-icon">01 / Frontend</div>
+        <div class="skill-name">React &amp; TypeScript</div>
+        <div class="skill-desc">Building component-driven UIs with clean state management and attention to UX.</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-icon">02 / Backend</div>
+        <div class="skill-name">Node.js &amp; Python</div>
+        <div class="skill-desc">RESTful APIs, authentication systems, and server-side architecture.</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <div class="skill-icon">03 / Data</div>
+        <div class="skill-name">SQL &amp; PostgreSQL</div>
+        <div class="skill-desc">Schema design, query optimization, and data modeling for production systems.</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-4">
+        <div class="skill-icon">04 / Infra</div>
+        <div class="skill-name">Git, Docker &amp; Cloud</div>
+        <div class="skill-desc">Version control, containerization, and deployment pipelines on AWS/Vercel.</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-5">
+        <div class="skill-icon">05 / Languages</div>
+        <div class="skill-name">C# .NET &amp; Java</div>
+        <div class="skill-desc">Unity, Object Oriented Programming, systems design and large project architecture.</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-6">
+        <div class="skill-icon">06 / AI Toolkit</div>
+        <div class="skill-name">Cursor &amp; Claude</div>
+        <div class="skill-desc">Leveraging the current best AI software in order to streamline development process.</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-6">
+        <div class="skill-icon">07 / Design</div>
+        <div class="skill-name">Figma &amp; Adobe Suite</div>
+        <div class="skill-desc">UI Design and UX Design, interactive prototypes, systems design.</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-6">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="work">
+  <div class="container">
+    <div class="section-label reveal">Selected Work</div>
+    <div class="projects-list">
+
+      <!-- Project 1: Let's Cook -->
+      <div class="project-card reveal">
+        <div class="project-row" onclick="toggleProject(this)">
+          <div>
+            <div class="project-meta">
+              <span class="project-num">001</span>
+              <span class="project-tag">Full-Stack</span>
+            </div>
+            <div class="project-title">Let's Cook</div>
+            <div class="project-desc">
+              Let's Cook helps you make the most of what's already in your kitchen by tracking your
+              on-hand ingredients and their expiration dates to reduce food waste. It then generates creative,
+              delicious recipe ideas tailored to what you have — so you can use up ingredients in time and cook with confidence.
+            </div>
+            <div class="project-stack">
+              <span class="stack-pill">React Native</span>
+              <span class="stack-pill">Node.js</span>
+              <span class="stack-pill">PostgreSQL</span>
+              <span class="stack-pill">OpenAI</span>
+              <span class="stack-pill">Supabase</span>
+              <span class="stack-pill">Vercel</span>
+            </div>
+          </div>
+          <div class="project-toggle">+</div>
+        </div>
+        <div class="project-expand">
+          <div class="project-expand-inner">
+            <div class="project-expand-content">
+              <div>
+                <div class="project-detail-label">The Details</div>
+                <div class="project-detail-text">
+                  Let's Cook is a full-stack kitchen management app that eliminates the daily "what do I make with this?" problem. Users maintain a live pantry — adding ingredients, quantities, and expiration dates — and the app surfaces what's at risk of going to waste. From there, a single click hits the OpenAI API with a carefully engineered prompt that accounts for the user's available ingredients, dietary preferences, and portion size, returning a structured recipe with ingredients, steps, and estimated cook time.
+                  <br><br>The ingredient database is backed by the Spoonacular API, which provides autocomplete, nutritional data, and unit normalization — so "half a block of firm tofu" and "200g tofu" resolve to the same pantry item. Authentication and real-time pantry sync are handled through Supabase, giving each user a persistent, cross-device kitchen without building a custom auth system. The frontend is built in React Native with a component architecture designed around the pantry state as the single source of truth — recipe generation, expiry alerts, and dietary filtering all derive from it.
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/ItsDraig" target="_blank" class="project-link github">⌥ GitHub</a>
+                <a href="#" target="_blank" class="project-link live">Download ↓</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Project Draftr -->
+      <div class="project-card reveal">
+        <div class="project-row" onclick="toggleProject(this)">
+          <div>
+            <div class="project-meta">
+              <span class="project-num">002</span>
+              <span class="project-tag">API / Backend</span>
+              <span class="project-tag">Open Source</span>
+            </div>
+            <div class="project-title">Project Draftr</div>
+            <div class="project-desc">
+              Utilizing Riot Games official API. Project Draftr is a tool for analyzing League of Legends team compositions. Including information about their strengths, weaknesses, and how well they would perform into other compositions.
+            </div>
+            <div class="project-stack">
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">FastAPI</span>
+              <span class="stack-pill">Docker</span>
+              <span class="stack-pill">AWS</span>
+            </div>
+          </div>
+          <div class="project-toggle">+</div>
+        </div>
+        <div class="project-expand">
+          <div class="project-expand-inner">
+            <div class="project-expand-content">
+              <div>
+                <div class="project-detail-label">The Details</div>
+                <div class="project-detail-text">
+                  Project Draftr is a full-stack League of Legends tool with backend/data science focus that evaluates five-champion team compositions in real time, assigning them a composition archetype and a letter grade from D to S. 
+                  Users select their five picks and the app immediately scores the draft across three dimensions: aggregate winrate (pulled live from the Riot Games API by rank tier), pairwise synergy between champions, and composition coherence — how cleanly the draft fits a recognized playstyle.
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/ItsDraig" target="_blank" class="project-link github">⌥ GitHub</a>
+                <a href="#" target="_blank" class="project-link live">↗ Live Site</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: SPECTRE QUEST -->
+      <div class="project-card reveal">
+        <div class="project-row" onclick="toggleProject(this)">
+          <div>
+            <div class="project-meta">
+              <span class="project-num">003</span>
+              <span class="project-tag">Unity Game</span>
+            </div>
+            <div class="project-title">SPECTRE QUEST: Eternal Ascent</div>
+            <div class="project-desc">
+              Large scale Unity game built in C#. Gained extensive experience in designing large project architecture, including practices in scalability
+              and efficiency. Developed project management skills, including setting timelines, coordinating deliverables,
+              and resolving various challenges.
+            </div>
+            <div class="project-stack">
+              <span class="stack-pill">Unity</span>
+              <span class="stack-pill">C# .NET</span>
+              <span class="stack-pill">Large Scale Architecture</span>
+              <span class="stack-pill">Project Management</span>
+            </div>
+          </div>
+          <div class="project-toggle">+</div>
+        </div>
+        <div class="project-expand">
+          <div class="project-expand-inner">
+            <div class="project-expand-content">
+              <div>
+                <div class="project-detail-label">The Details</div>
+                <div class="project-detail-text">
+                  With what started as a simple passion project, quickly grew into an incredibly large and ambitious project that I've worked on during my 
+                  free time over the past 4 years. Utilizing my experience as a VR Developer, SPECTRE QUEST became an outlet for not only my creative, game-loving self, but
+                  also a deep technical challenge - forcing me to learn about large-scale project architecture, managing a team, and navigating all the aspects of proper project management.
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://spectrequest.com/" target="_blank" class="project-link live">↗ Live Site</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div style="width: 100%; text-align: center;">
+    <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.9rem; letter-spacing: 0.05em;">
+      More projects coming soon.
+    </p>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="section-label reveal">About Me</div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm a multi-skilled developer with a background in VR and professional experience at Fullport Dev, where I’ve built modern full-stack applications with a focus on clean architecture and real-world impact.
+        </p>
+        <p>
+          I'm drawn to problems at the intersection of engineering and product thinking, while leveraging the incredible advancements in the field of AI. I’m working toward roles in technical leadership and software architecture.
+        </p>
+        <p>
+          Outside of work, I’m an indie game developer, guitarist, avid reader, and an aspiring golfer. I believe the best software comes from teams grounded in strong communication, genuine curiosity and interest.
+        </p>
+      </div>
+      <div class="about-facts reveal reveal-delay-2">
+        <div class="about-fact">
+          <span class="fact-label">Based in</span>
+          <span class="fact-value">Toronto, ON</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Focus</span>
+          <span class="fact-value">Full-Stack Development</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Looking for</span>
+          <span class="fact-value">Full-time / Contract</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Education</span>
+          <span class="fact-value">uOttawa | Honours BSc in Comp Sci</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Languages</span>
+          <span class="fact-value">JS / TS / Python / C# .NET</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Status</span>
+          <span class="fact-value" style="color: var(--green);">Open to work ✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label reveal">Get in Touch</div>
+    <div class="contact-inner">
+      <div class="reveal">
+        <h2 class="contact-heading">Let's build something <em>great</em> together.</h2>
+        <p class="contact-sub">
+          I'm currently open to full-time roles and interesting freelance projects.
+          If you have a problem worth solving, I'd love to hear about it.
+        </p>
+      </div>
+      <div class="contact-links reveal reveal-delay-2">
+        <a href="mailto:olivercameronclarke@gmail.com" class="contact-link">
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">olivercameronclarke@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://github.com/ItsDraig" target="_blank" class="contact-link">
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-value">github.com/ItsDraig</div>
+          </div>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/oliver-cameron-clarke/" target="_blank" class="contact-link">
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/oliver-cameron-clarke</div>
+          </div>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a href="OliverClarke_Resume.pdf" target="_blank" class="contact-link">
+          <div>
+            <div class="contact-link-label">Resume</div>
+            <div class="contact-link-value">Download PDF</div>
+          </div>
+          <span class="contact-link-arrow">↓</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <footer>
+    <span class="footer-copy">© 2026 oliverclarke.dev</span>
+    <span class="footer-copy">Designed &amp; developed by Oliver Clarke.</span>
+  </footer>
+</div>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Project expand/collapse
+  function toggleProject(row) {
+    const card = row.closest('.project-card');
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.project-card.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
