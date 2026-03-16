@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oliver Clarke — Developer</title>
+<title>Oliver Clarke | Developer</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
-<meta name="description" content="Oliver Clarke — full-stack developer. I build purposeful, well-engineered software: sleek interfaces, robust backends, and production-ready systems." />
-<meta property="og:title" content="Oliver Clarke — Developer" />
+<meta name="description" content="Oliver Clarke is a full-stack developer. I build purposeful, well-engineered software: sleek interfaces, robust backends, and production-ready systems." />
+<meta property="og:title" content="Oliver Clarke | Developer" />
 <meta property="og:description" content="Full-stack developer building purposeful, well-engineered software." />
 <meta property="og:type" content="website" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -310,6 +310,143 @@
   }
   .ai-text p { color: var(--muted); line-height: 1.9; margin-bottom: 18px; font-size: 0.95rem; }
   .ai-text p:last-child { margin-bottom: 0; }
+  .ai-media {
+    margin-top: 32px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background:
+      radial-gradient(circle at 10% 0%, rgba(200,169,110,0.18), transparent 55%),
+      radial-gradient(circle at 100% 100%, rgba(90,138,90,0.16), transparent 55%),
+      var(--surface);
+    padding: 16px 18px 18px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+  }
+  .ai-media-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ai-media-label span:last-child {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+  .ai-media-placeholder {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px dashed rgba(200,169,110,0.4);
+    background: rgba(12,12,11,0.7);
+    padding: 14px 14px 16px;
+    min-height: 315px;
+  }
+  .ai-timeline {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+    gap: 18px;
+  }
+  .ai-timeline-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ai-timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s;
+  }
+  .ai-timeline-step-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(200,169,110,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: rgba(200,169,110,0.06);
+  }
+  .ai-timeline-step-label-main {
+    color: var(--text);
+  }
+  .ai-timeline-step-label-sub {
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .ai-timeline-step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .ai-timeline-step[aria-selected="true"],
+  .ai-timeline-step:hover {
+    border-color: rgba(200,169,110,0.7);
+    background: rgba(200,169,110,0.09);
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+  .ai-timeline-detail {
+    border-radius: 10px;
+    border: 1px solid rgba(37,37,35,0.9);
+    background: radial-gradient(circle at 0% 0%, rgba(200,169,110,0.18), transparent 55%), #131311;
+    padding: 12px 14px 14px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+    min-height: 210px;
+  }
+  .ai-timeline-detail-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .ai-timeline-detail-body strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .ai-timeline-detail-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .ai-timeline-detail-pill {
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(60,60,58,0.9);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+  @media (max-width: 768px) {
+    .ai-timeline {
+      grid-template-columns: 1fr;
+    }
+    .ai-media-placeholder {
+      min-height: 0;
+    }
+  }
   .ai-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
   .ai-card { background: var(--surface); padding: 22px 24px; }
   .ai-card h3 {
@@ -432,13 +569,13 @@
       <h1 class="hero-name">Oliver <em>Clarke</em></h1>
       <div class="hero-role">builds things.</div>
       <p class="hero-bio">
-        I craft purposeful, well-engineered software — from sleek interfaces to robust backends.
+        I craft purposeful, well-engineered software, from sleek interfaces to robust backends.
         Currently open to new opportunities and interesting problems.
       </p>
       <div class="hero-bullets" aria-label="Highlights">
-        <div class="hero-bullet"><span class="dot">•</span><span><strong>Product-minded engineering</strong> — I ship features that feel great to use.</span></div>
-        <div class="hero-bullet"><span class="dot">•</span><span><strong>Full-stack range</strong> — React/TS, APIs, databases, deployment.</span></div>
-        <div class="hero-bullet"><span class="dot">•</span><span><strong>AI-accelerated workflow</strong> — faster iteration without sacrificing code quality.</span></div>
+        <div class="hero-bullet"><span class="dot">•</span><span><strong>Product-minded engineering</strong>. I ship features that feel great to use.</span></div>
+        <div class="hero-bullet"><span class="dot">•</span><span><strong>Full-stack range</strong>. React/TS, APIs, databases, deployment.</span></div>
+        <div class="hero-bullet"><span class="dot">•</span><span><strong>AI-accelerated workflow</strong>. Faster iteration without sacrificing code quality.</span></div>
       </div>
       <div class="hero-actions">
         <a href="#work" class="btn-primary">View my work ↓</a>
@@ -520,7 +657,7 @@
             <div class="project-desc">
               Let's Cook helps you make the most of what's already in your kitchen by tracking your
               on-hand ingredients and their expiration dates to reduce food waste. It then generates creative,
-              delicious recipe ideas tailored to what you have — so you can use up ingredients in time and cook with confidence.
+              delicious recipe ideas tailored to what you have, so you can use up ingredients in time and cook with confidence.
             </div>
             <div class="project-stack">
               <span class="stack-pill">React Native</span>
@@ -744,7 +881,7 @@
     <div class="ai-grid">
       <div class="ai-text reveal">
         <p>
-          I treat AI as a force multiplier — not a shortcut. Tools like Cursor and Claude help me iterate faster, explore alternatives, and catch edge cases early,
+          I treat AI as a force multiplier, not a shortcut. Tools like Cursor and Claude help me iterate faster, explore alternatives, and catch edge cases early,
           while I stay accountable for architecture, correctness, and maintainability.
         </p>
         <p>
@@ -752,31 +889,82 @@
           reliable observability, and careful review.
         </p>
         <p>
-          This also makes collaboration easier: I can produce clearer PR descriptions, faster spikes, and more complete documentation — without sacrificing ownership of the solution.
+          This also makes collaboration easier: I can produce clearer PR descriptions, faster spikes, and more complete documentation, without sacrificing ownership of the solution.
         </p>
+        <div class="ai-media">
+          <div class="ai-media-label">
+            <span>Workflow in practice</span>
+            <span>Hover steps to explore</span>
+          </div>
+          <div class="ai-media-placeholder">
+            <div class="ai-timeline" role="tablist" aria-label="AI-assisted development workflow">
+              <div class="ai-timeline-steps">
+                <button class="ai-timeline-step" type="button" role="tab" aria-selected="true" aria-controls="ai-step-discover" id="ai-step-discover-tab" data-step="discover">
+                  <div class="ai-timeline-step-badge">1</div>
+                  <div class="ai-timeline-step-content">
+                    <span class="ai-timeline-step-label-main">Discover &amp; clarify</span>
+                    <span class="ai-timeline-step-label-sub">Problem, constraints, success criteria</span>
+                  </div>
+                </button>
+                <button class="ai-timeline-step" type="button" role="tab" aria-selected="false" aria-controls="ai-step-draft" id="ai-step-draft-tab" data-step="draft">
+                  <div class="ai-timeline-step-badge">2</div>
+                  <div class="ai-timeline-step-content">
+                    <span class="ai-timeline-step-label-main">Draft with AI</span>
+                    <span class="ai-timeline-step-label-sub">Spike, scaffold, or refactor</span>
+                  </div>
+                </button>
+                <button class="ai-timeline-step" type="button" role="tab" aria-selected="false" aria-controls="ai-step-harden" id="ai-step-harden-tab" data-step="harden">
+                  <div class="ai-timeline-step-badge">3</div>
+                  <div class="ai-timeline-step-content">
+                    <span class="ai-timeline-step-label-main">Harden &amp; verify</span>
+                    <span class="ai-timeline-step-label-sub">Types, tests, edge cases</span>
+                  </div>
+                </button>
+                <button class="ai-timeline-step" type="button" role="tab" aria-selected="false" aria-controls="ai-step-ship" id="ai-step-ship-tab" data-step="ship">
+                  <div class="ai-timeline-step-badge">4</div>
+                  <div class="ai-timeline-step-content">
+                    <span class="ai-timeline-step-label-main">Ship &amp; document</span>
+                    <span class="ai-timeline-step-label-sub">PRs, notes, follow-ups</span>
+                  </div>
+                </button>
+              </div>
+              <div class="ai-timeline-detail" role="tabpanel" id="ai-timeline-detail" aria-labelledby="ai-step-discover-tab">
+                <div class="ai-timeline-detail-title" id="ai-timeline-detail-title">1 · Discover &amp; clarify</div>
+                <div class="ai-timeline-detail-body" id="ai-timeline-detail-body">
+                  <strong>Start with the problem, not the prompt.</strong> I write a short brief in natural language (goal, inputs, constraints, "done" criteria), then use AI to pressure-test edge cases and missing requirements before touching code.
+                </div>
+                <div class="ai-timeline-detail-pills" id="ai-timeline-detail-pills">
+                  <span class="ai-timeline-detail-pill">Clarify requirements</span>
+                  <span class="ai-timeline-detail-pill">Surface edge cases</span>
+                  <span class="ai-timeline-detail-pill">Align on success</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="ai-cards reveal reveal-delay-2">
         <div class="ai-card">
           <h3>Where AI helps most</h3>
           <ul>
-            <li><strong>Scaffolding &amp; refactors</strong> — generate a first pass, then tighten types, naming, structure.</li>
-            <li><strong>Debugging</strong> — reproduce issues, form hypotheses, and validate fixes with targeted tests.</li>
-            <li><strong>API &amp; data modeling</strong> — propose schemas and endpoints, then verify constraints and edge cases.</li>
+            <li><strong>Scaffolding &amp; refactors</strong>. Generate a first pass, then tighten types, naming, structure.</li>
+            <li><strong>Debugging</strong>. Reproduce issues, form hypotheses, and validate fixes with targeted tests.</li>
+            <li><strong>API &amp; data modeling</strong>. Propose schemas and endpoints, then verify constraints and edge cases.</li>
           </ul>
         </div>
         <div class="ai-card">
           <h3>Guardrails I use</h3>
           <ul>
-            <li><strong>Small diffs</strong> — ship incremental changes with clear rollback paths.</li>
-            <li><strong>Verification</strong> — tests, linting, and manual checks for UX and performance.</li>
-            <li><strong>Security awareness</strong> — never paste secrets; validate auth, input, and data access.</li>
+            <li><strong>Small diffs</strong>. Ship incremental changes with clear rollback paths.</li>
+            <li><strong>Verification</strong>. Tests, linting, and manual checks for UX and performance.</li>
+            <li><strong>Security awareness</strong>. Never paste secrets; validate auth, input, and data access.</li>
           </ul>
         </div>
         <div class="ai-card">
           <h3>How I communicate it</h3>
           <ul>
-            <li><strong>Transparent</strong> — I can explain what AI contributed and what I validated.</li>
-            <li><strong>Outcome-driven</strong> — focus on cycle time, reliability, and product impact.</li>
+            <li><strong>Transparent</strong>. I can explain what AI contributed and what I validated.</li>
+            <li><strong>Outcome-driven</strong>. Focus on cycle time, reliability, and product impact.</li>
           </ul>
         </div>
       </div>
@@ -984,6 +1172,64 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => obs.observe(el));
+
+  // AI workflow timeline
+  const aiSteps = document.querySelectorAll('.ai-timeline-step');
+  const aiDetail = document.getElementById('ai-timeline-detail');
+  const aiDetailTitle = document.getElementById('ai-timeline-detail-title');
+  const aiDetailBody = document.getElementById('ai-timeline-detail-body');
+  const aiDetailPills = document.getElementById('ai-timeline-detail-pills');
+  const aiStepContent = {
+    discover: {
+      title: '1 · Discover & clarify',
+      body: '<strong>Start with the problem, not the prompt.</strong> I write a short brief in natural language (goal, inputs, constraints, "done" criteria), then use AI to pressure-test edge cases and missing requirements before touching code.',
+      pills: ['Clarify requirements', 'Surface edge cases', 'Align on success']
+    },
+    draft: {
+      title: '2 · Draft with AI',
+      body: '<strong>Use AI for acceleration, not authority.</strong> I lean on tools like Cursor and Claude to scaffold components, endpoints, or refactors, but I immediately reshape the output to match the codebase’s patterns and naming.',
+      pills: ['Scaffold components/APIs', 'Explore alternatives', 'Keep diffs small']
+    },
+    harden: {
+      title: '3 · Harden & verify',
+      body: '<strong>Trust comes from verification.</strong> I tighten types, add or update tests, and have AI help generate test cases I might miss. Then I run them locally and in CI to be sure behaviour matches intent.',
+      pills: ['Type safety', 'Unit & integration tests', 'Performance & error paths']
+    },
+    ship: {
+      title: '4 · Ship & document',
+      body: '<strong>Ship with context.</strong> I use AI to draft PR descriptions, changelogs, or inline docs, then edit them so they accurately reflect decisions, trade-offs, and follow-ups for the team.',
+      pills: ['Clear PR descriptions', 'Changelogs & docs', 'Capture follow-ups']
+    }
+  };
+  function setAiStep(stepKey) {
+    const data = aiStepContent[stepKey];
+    if (!data || !aiDetail || !aiDetailTitle || !aiDetailBody || !aiDetailPills) return;
+    aiSteps.forEach(btn => {
+      const selected = btn.getAttribute('data-step') === stepKey;
+      btn.setAttribute('aria-selected', selected ? 'true' : 'false');
+      btn.setAttribute('tabindex', selected ? '0' : '-1');
+    });
+    aiDetailTitle.textContent = data.title;
+    aiDetailBody.innerHTML = data.body;
+    aiDetailPills.innerHTML = '';
+    data.pills.forEach(text => {
+      const pill = document.createElement('span');
+      pill.className = 'ai-timeline-detail-pill';
+      pill.textContent = text;
+      aiDetailPills.appendChild(pill);
+    });
+  }
+  if (aiSteps.length && aiDetail) {
+    aiSteps.forEach(btn => {
+      btn.addEventListener('click', () => setAiStep(btn.getAttribute('data-step')));
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setAiStep(btn.getAttribute('data-step'));
+        }
+      });
+    });
+  }
 </script>
 </main>
 </body>
