@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oliver Clarke — Developer</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="description" content="Oliver Clarke — full-stack developer. I build purposeful, well-engineered software: sleek interfaces, robust backends, and production-ready systems." />
+<meta property="og:title" content="Oliver Clarke — Developer" />
+<meta property="og:description" content="Full-stack developer building purposeful, well-engineered software." />
+<meta property="og:type" content="website" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -15,6 +21,7 @@
     --accent: #c8a96e;
     --accent-dim: rgba(200,169,110,0.12);
     --green: #5a8a5a;
+    --shadow: 0 18px 60px rgba(0,0,0,0.45);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,9 +32,26 @@
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
     line-height: 1.6;
-    cursor: none;
     overflow-x: hidden;
   }
+  ::selection { background: rgba(200,169,110,0.22); }
+
+  /* Accessibility */
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 12px;
+    z-index: 10000;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 10px 14px;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+  .skip-link:focus { left: 12px; outline: none; box-shadow: var(--shadow); }
+  :focus-visible { outline: 2px solid rgba(200,169,110,0.75); outline-offset: 3px; }
 
   /* Cursor */
   .cursor {
@@ -46,6 +70,9 @@
   }
   body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 14px; height: 14px; }
   body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 48px; height: 48px; border-color: var(--accent); }
+  @media (pointer: coarse) {
+    .cursor, .cursor-ring { display: none !important; }
+  }
 
   /* Layout */
   .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
@@ -59,9 +86,51 @@
   nav.scrolled { background: rgba(12,12,11,0.92); backdrop-filter: blur(12px); border-color: var(--border); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; }
   .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--accent); text-decoration: none; letter-spacing: 0.02em; }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); border-color: var(--accent); color: var(--accent); }
+  .menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .menu-btn:hover { border-color: var(--accent); }
+  .mobile-menu {
+    display: none;
+    border-top: 1px solid var(--border);
+    padding: 12px 0 6px;
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 12px 0;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .mobile-menu a:hover { color: var(--text); }
 
   /* Hero */
   .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; overflow: hidden; }
@@ -70,6 +139,24 @@
     background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size: 80px 80px; opacity: 0.3;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  }
+  .hero-orb {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, rgba(200,169,110,0.24), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(90,138,90,0.18), transparent 55%);
+    filter: blur(22px);
+    opacity: 0.9;
+    top: 55%;
+    left: 70%;
+    transform:
+      translate(
+        calc(-50% + var(--hero-orb-x, 0px)),
+        calc(-50% + var(--hero-orb-y, 0px))
+      );
+    pointer-events: none;
   }
   .hero-content { position: relative; z-index: 1; }
   .hero-tag {
@@ -89,7 +176,35 @@
     line-height: 1.0; letter-spacing: -0.02em; color: var(--muted); margin-bottom: 40px;
     opacity: 0; animation: fadeUp 0.7s ease 0.45s forwards;
   }
+  .hero-name,
+  .hero-role {
+    transition: letter-spacing 0.25s ease, transform 0.25s ease;
+  }
+  .hero:hover .hero-name,
+  .hero:hover .hero-role {
+    letter-spacing: -0.01em;
+    transform: translateY(-2px);
+  }
   .hero-bio { max-width: 480px; color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.7s ease 0.6s forwards; }
+  .hero-bullets {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: -18px 0 48px;
+    max-width: 560px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.68s forwards;
+  }
+  .hero-bullet {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .hero-bullet strong { color: var(--text); font-weight: 500; }
+  .hero-bullet .dot { color: var(--accent); font-family: 'DM Mono', monospace; }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards; }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
@@ -125,7 +240,15 @@
   .projects-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
   .project-card { background: var(--surface); transition: background 0.2s; overflow: hidden; }
   .project-card.open { background: var(--accent-dim); }
-  .project-row { display: grid; grid-template-columns: 1fr auto; gap: 40px; padding: 40px; align-items: start; cursor: pointer; user-select: none; }
+  .project-row { display: grid; grid-template-columns: 1fr auto; gap: 40px; padding: 40px; align-items: start; }
+  .project-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+  }
   .project-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
   .project-num { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
   .project-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); background: var(--accent-dim); padding: 3px 10px; letter-spacing: 0.08em; }
@@ -145,13 +268,27 @@
   .project-card.open .project-expand { grid-template-rows: 1fr; }
   .project-expand-inner { overflow: hidden; }
   .project-expand-content {
-    display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: flex-start;
     border-top: 1px solid var(--border);
     padding: 28px 40px 36px; margin: 0 40px;
   }
   .project-detail-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
   .project-detail-text { font-size: 0.88rem; color: var(--text); line-height: 1.8; max-width: 540px; }
-  .project-links { display: flex; gap: 10px; flex-shrink: 0; }
+  .project-insights { display: flex; flex-direction: column; gap: 18px; }
+  .project-metrics { display: flex; flex-direction: column; gap: 10px; }
+  .project-metric { display: flex; flex-direction: column; gap: 4px; }
+  .project-metric-label-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; color: var(--muted); }
+  .project-metric-label { font-family: 'DM Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.65rem; }
+  .project-metric-value { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text); }
+  .project-metric-bar-wrap { position: relative; width: 100%; height: 4px; background: #1b1b19; overflow: hidden; }
+  .project-metric-bar {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--accent), rgba(200,169,110,0.2));
+    width: 0%;
+    transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .project-links { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; margin-top: 12px; }
   .project-link {
     display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
     font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
@@ -163,6 +300,30 @@
   .project-link.github:hover { border-color: var(--accent); color: var(--accent); }
   .project-link.live { background: var(--accent); color: var(--bg); border: 1px solid var(--accent); }
   .project-link.live:hover { background: #d4b87a; border-color: #d4b87a; }
+
+  /* AI usage */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .ai-text p { color: var(--muted); line-height: 1.9; margin-bottom: 18px; font-size: 0.95rem; }
+  .ai-text p:last-child { margin-bottom: 0; }
+  .ai-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .ai-card { background: var(--surface); padding: 22px 24px; }
+  .ai-card h3 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .ai-card ul { list-style: none; display: grid; gap: 10px; }
+  .ai-card li { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+  .ai-card li strong { color: var(--text); font-weight: 500; }
 
   /* About */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -203,18 +364,32 @@
   .reveal-delay-4 { transition-delay: 0.4s; }
   .reveal-delay-5 { transition-delay: 0.5s; }
   .reveal-delay-6 { transition-delay: 0.6s; }
+  .reveal-delay-7 { transition-delay: 0.7s; }
+  .reveal-delay-8 { transition-delay: 0.8s; }
 
   @media (max-width: 768px) {
     .container { padding: 0 24px; }
-    .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .about-grid, .contact-inner, .ai-grid { grid-template-columns: 1fr; gap: 48px; }
     .project-row { grid-template-columns: 1fr; }
     .project-expand-content { grid-template-columns: 1fr; margin: 0 24px; }
     .project-links { flex-wrap: wrap; }
     .nav-links { display: none; }
+    .menu-btn { display: inline-flex; }
+    .mobile-menu.open { display: block; }
+    .nav-cta { display: none; }
+    .hero-orb { width: 420px; height: 420px; left: 60%; top: 62%; opacity: 0.8; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cursor, .cursor-ring { display: none !important; }
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   }
 </style>
 </head>
 <body>
+
+<a href="#main" class="skip-link">Skip to content</a>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -223,18 +398,34 @@
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">OC.</a>
-      <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#ai">AI</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="nav-cta" href="OliverClarke_Resume.pdf" target="_blank" rel="noopener">Resume ↓</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#ai">AI</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="OliverClarke_Resume.pdf" target="_blank" rel="noopener">Resume</a>
     </div>
   </div>
 </nav>
 
+<main id="main">
 <!-- Hero -->
 <section class="hero">
   <div class="hero-grid"></div>
+  <div class="hero-orb" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
       <div class="hero-tag">Full-Stack Developer</div>
@@ -244,9 +435,15 @@
         I craft purposeful, well-engineered software — from sleek interfaces to robust backends.
         Currently open to new opportunities and interesting problems.
       </p>
+      <div class="hero-bullets" aria-label="Highlights">
+        <div class="hero-bullet"><span class="dot">•</span><span><strong>Product-minded engineering</strong> — I ship features that feel great to use.</span></div>
+        <div class="hero-bullet"><span class="dot">•</span><span><strong>Full-stack range</strong> — React/TS, APIs, databases, deployment.</span></div>
+        <div class="hero-bullet"><span class="dot">•</span><span><strong>AI-accelerated workflow</strong> — faster iteration without sacrificing code quality.</span></div>
+      </div>
       <div class="hero-actions">
         <a href="#work" class="btn-primary">View my work ↓</a>
         <a href="#contact" class="btn-ghost">Get in touch →</a>
+        <a href="OliverClarke_Resume.pdf" target="_blank" rel="noopener" class="btn-ghost">Resume ↓</a>
       </div>
       <div class="status">
         <span class="status-dot"></span>
@@ -288,15 +485,18 @@
       </div>
       <div class="skill-card reveal reveal-delay-6">
         <div class="skill-icon">06 / AI Toolkit</div>
-        <div class="skill-name">Cursor &amp; Claude</div>
-        <div class="skill-desc">Leveraging the current best AI software in order to streamline development process.</div>
+        <div class="skill-name">Cursor, Claude &amp; LLM APIs</div>
+        <div class="skill-desc">Using AI to accelerate iteration, improve reliability, and ship faster with guardrails.</div>
       </div>
-      <div class="skill-card reveal reveal-delay-6">
+      <div class="skill-card reveal reveal-delay-7">
         <div class="skill-icon">07 / Design</div>
         <div class="skill-name">Figma &amp; Adobe Suite</div>
         <div class="skill-desc">UI Design and UX Design, interactive prototypes, systems design.</div>
       </div>
-      <div class="skill-card reveal reveal-delay-6">
+      <div class="skill-card reveal reveal-delay-8">
+        <div class="skill-icon">08 / Testing &amp; Quality</div>
+        <div class="skill-name">Jest, Playwright &amp; Pytest</div>
+        <div class="skill-desc">Unit, integration, and end-to-end testing to keep features stable as the codebase grows.</div>
       </div>
     </div>
   </div>
@@ -309,8 +509,8 @@
     <div class="projects-list">
 
       <!-- Project 1: Let's Cook -->
-      <div class="project-card reveal">
-        <div class="project-row" onclick="toggleProject(this)">
+      <div class="project-card reveal" data-project>
+        <button class="project-row project-btn" type="button" aria-expanded="false">
           <div>
             <div class="project-meta">
               <span class="project-num">001</span>
@@ -332,20 +532,51 @@
             </div>
           </div>
           <div class="project-toggle">+</div>
-        </div>
-        <div class="project-expand">
+        </button>
+        <div class="project-expand" aria-hidden="true">
           <div class="project-expand-inner">
             <div class="project-expand-content">
               <div>
                 <div class="project-detail-label">The Details</div>
                 <div class="project-detail-text">
-                  Let's Cook is a full-stack kitchen management app that eliminates the daily "what do I make with this?" problem. Users maintain a live pantry — adding ingredients, quantities, and expiration dates — and the app surfaces what's at risk of going to waste. From there, a single click hits the OpenAI API with a carefully engineered prompt that accounts for the user's available ingredients, dietary preferences, and portion size, returning a structured recipe with ingredients, steps, and estimated cook time.
-                  <br><br>The ingredient database is backed by the Spoonacular API, which provides autocomplete, nutritional data, and unit normalization — so "half a block of firm tofu" and "200g tofu" resolve to the same pantry item. Authentication and real-time pantry sync are handled through Supabase, giving each user a persistent, cross-device kitchen without building a custom auth system. The frontend is built in React Native with a component architecture designed around the pantry state as the single source of truth — recipe generation, expiry alerts, and dietary filtering all derive from it.
+                  Let's Cook is a full-stack kitchen companion that turns whatever is in your pantry into concrete meal ideas. Users track ingredients and expiry dates, and the app highlights what needs to be used first. A single tap sends your pantry, portions, and dietary prefs to the OpenAI API to generate structured recipes with steps, ingredients, and cook time, backed by Spoonacular for ingredient data and Supabase for auth and real-time sync. On the frontend, React Native components are organized around a single pantry state so recipe generation, expiry alerts, and dietary filters all stay in sync.
                 </div>
               </div>
-              <div class="project-links">
-                <a href="https://github.com/ItsDraig" target="_blank" class="project-link github">⌥ GitHub</a>
-                <a href="#" target="_blank" class="project-link live">Download ↓</a>
+              <div class="project-insights">
+                <div class="project-detail-label">Project snapshot</div>
+                <div class="project-metrics">
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Scale</span>
+                      <span class="project-metric-value">High</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="88"></div>
+                    </div>
+                  </div>
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Complexity</span>
+                      <span class="project-metric-value">Full-stack + AI</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="85"></div>
+                    </div>
+                  </div>
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Production-readiness</span>
+                      <span class="project-metric-value">Auth, sync, APIs</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="80"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/ItsDraig" target="_blank" class="project-link github">⌥ GitHub</a>
+                  <a href="#" target="_blank" class="project-link live">Download ↓</a>
+                </div>
               </div>
             </div>
           </div>
@@ -353,8 +584,8 @@
       </div>
 
       <!-- Project 2: Project Draftr -->
-      <div class="project-card reveal">
-        <div class="project-row" onclick="toggleProject(this)">
+      <div class="project-card reveal" data-project>
+        <button class="project-row project-btn" type="button" aria-expanded="false">
           <div>
             <div class="project-meta">
               <span class="project-num">002</span>
@@ -374,20 +605,51 @@
             </div>
           </div>
           <div class="project-toggle">+</div>
-        </div>
-        <div class="project-expand">
+        </button>
+        <div class="project-expand" aria-hidden="true">
           <div class="project-expand-inner">
             <div class="project-expand-content">
               <div>
                 <div class="project-detail-label">The Details</div>
                 <div class="project-detail-text">
-                  Project Draftr is a full-stack League of Legends tool with backend/data science focus that evaluates five-champion team compositions in real time, assigning them a composition archetype and a letter grade from D to S. 
-                  Users select their five picks and the app immediately scores the draft across three dimensions: aggregate winrate (pulled live from the Riot Games API by rank tier), pairwise synergy between champions, and composition coherence — how cleanly the draft fits a recognized playstyle.
+                  Project Draftr is a full-stack analysis tool for five-champion League of Legends team comps. It pulls live win rates by rank from the Riot Games API, scores pairwise champion synergy, and classifies each draft into an archetype (e.g. teamfight, pick, front-to-back) with a letter grade so players can quickly understand strengths, gaps, and win conditions. Under the hood, a FastAPI backend handles data fetching, caching, and composition scoring, exposed to a React frontend that focuses on clear visual feedback as you tweak drafts.
                 </div>
               </div>
-              <div class="project-links">
-                <a href="https://github.com/ItsDraig" target="_blank" class="project-link github">⌥ GitHub</a>
-                <a href="#" target="_blank" class="project-link live">↗ Live Site</a>
+              <div class="project-insights">
+                <div class="project-detail-label">Project snapshot</div>
+                <div class="project-metrics">
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Scale</span>
+                      <span class="project-metric-value">Medium</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="70"></div>
+                    </div>
+                  </div>
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Complexity</span>
+                      <span class="project-metric-value">API + analytics</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="78"></div>
+                    </div>
+                  </div>
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Data focus</span>
+                      <span class="project-metric-value">Stats + modeling</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="82"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/ItsDraig" target="_blank" class="project-link github">⌥ GitHub</a>
+                  <a href="#" target="_blank" class="project-link live">↗ Live Site</a>
+                </div>
               </div>
             </div>
           </div>
@@ -395,8 +657,8 @@
       </div>
 
       <!-- Project 3: SPECTRE QUEST -->
-      <div class="project-card reveal">
-        <div class="project-row" onclick="toggleProject(this)">
+      <div class="project-card reveal" data-project>
+        <button class="project-row project-btn" type="button" aria-expanded="false">
           <div>
             <div class="project-meta">
               <span class="project-num">003</span>
@@ -416,20 +678,50 @@
             </div>
           </div>
           <div class="project-toggle">+</div>
-        </div>
-        <div class="project-expand">
+        </button>
+        <div class="project-expand" aria-hidden="true">
           <div class="project-expand-inner">
             <div class="project-expand-content">
               <div>
                 <div class="project-detail-label">The Details</div>
                 <div class="project-detail-text">
-                  With what started as a simple passion project, quickly grew into an incredibly large and ambitious project that I've worked on during my 
-                  free time over the past 4 years. Utilizing my experience as a VR Developer, SPECTRE QUEST became an outlet for not only my creative, game-loving self, but
-                  also a deep technical challenge - forcing me to learn about large-scale project architecture, managing a team, and navigating all the aspects of proper project management.
+                  SPECTRE QUEST began as a small passion project and grew into a large-scale Unity title built over four years. It pushed my skills in building reusable gameplay systems, optimizing performance for complex scenes, and putting real project management in place around scope, milestones, and collaboration. The codebase is structured around modular systems (abilities, enemies, levels) that can be extended without rewriting core game loops, which was critical as scope evolved.
                 </div>
               </div>
-              <div class="project-links">
-                <a href="https://spectrequest.com/" target="_blank" class="project-link live">↗ Live Site</a>
+              <div class="project-insights">
+                <div class="project-detail-label">Project snapshot</div>
+                <div class="project-metrics">
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Scale</span>
+                      <span class="project-metric-value">Very high</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="95"></div>
+                    </div>
+                  </div>
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Complexity</span>
+                      <span class="project-metric-value">Game systems</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="90"></div>
+                    </div>
+                  </div>
+                  <div class="project-metric">
+                    <div class="project-metric-label-row">
+                      <span class="project-metric-label">Leadership</span>
+                      <span class="project-metric-value">Planning &amp; delivery</span>
+                    </div>
+                    <div class="project-metric-bar-wrap">
+                      <div class="project-metric-bar" data-level="88"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-links">
+                  <a href="https://spectrequest.com/" target="_blank" class="project-link live">↗ Live Site</a>
+                </div>
               </div>
             </div>
           </div>
@@ -439,9 +731,56 @@
     </div>
   </div>
   <div style="width: 100%; text-align: center;">
-    <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.9rem; letter-spacing: 0.05em;">
+    <p style="color: var(--muted); margin-top: 1.5rem; font-size: 0.9rem; letter-spacing: 0.05em;">
       More projects coming soon.
     </p>
+  </div>
+</section>
+
+<!-- AI Usage -->
+<section id="ai">
+  <div class="container">
+    <div class="section-label reveal">AI Usage</div>
+    <div class="ai-grid">
+      <div class="ai-text reveal">
+        <p>
+          I treat AI as a force multiplier — not a shortcut. Tools like Cursor and Claude help me iterate faster, explore alternatives, and catch edge cases early,
+          while I stay accountable for architecture, correctness, and maintainability.
+        </p>
+        <p>
+          My goal is simple: ship higher-quality software in fewer cycles. I use AI most effectively when it’s paired with strong fundamentals: clear specs, good tests,
+          reliable observability, and careful review.
+        </p>
+        <p>
+          This also makes collaboration easier: I can produce clearer PR descriptions, faster spikes, and more complete documentation — without sacrificing ownership of the solution.
+        </p>
+      </div>
+      <div class="ai-cards reveal reveal-delay-2">
+        <div class="ai-card">
+          <h3>Where AI helps most</h3>
+          <ul>
+            <li><strong>Scaffolding &amp; refactors</strong> — generate a first pass, then tighten types, naming, structure.</li>
+            <li><strong>Debugging</strong> — reproduce issues, form hypotheses, and validate fixes with targeted tests.</li>
+            <li><strong>API &amp; data modeling</strong> — propose schemas and endpoints, then verify constraints and edge cases.</li>
+          </ul>
+        </div>
+        <div class="ai-card">
+          <h3>Guardrails I use</h3>
+          <ul>
+            <li><strong>Small diffs</strong> — ship incremental changes with clear rollback paths.</li>
+            <li><strong>Verification</strong> — tests, linting, and manual checks for UX and performance.</li>
+            <li><strong>Security awareness</strong> — never paste secrets; validate auth, input, and data access.</li>
+          </ul>
+        </div>
+        <div class="ai-card">
+          <h3>How I communicate it</h3>
+          <ul>
+            <li><strong>Transparent</strong> — I can explain what AI contributed and what I validated.</li>
+            <li><strong>Outcome-driven</strong> — focus on cycle time, reliability, and product impact.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -544,26 +883,94 @@
 </div>
 
 <script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  function animateCursor() {
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animateCursor);
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function setMenuOpen(open) {
+    if (!menuBtn || !mobileMenu) return;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    mobileMenu.classList.toggle('open', open);
+    menuBtn.textContent = open ? '✕' : '☰';
   }
-  animateCursor();
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => setMenuOpen(mobileMenu.classList.contains('open') ? false : true));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenuOpen(false)));
+  }
 
-  // Project expand/collapse
-  function toggleProject(row) {
-    const card = row.closest('.project-card');
-    const isOpen = card.classList.contains('open');
-    document.querySelectorAll('.project-card.open').forEach(c => c.classList.remove('open'));
-    if (!isOpen) card.classList.add('open');
+  // Custom cursor (only on fine pointers + when motion allowed)
+  const allowMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (allowMotion && finePointer) {
+    document.body.style.cursor = 'none';
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    const heroOrb = document.querySelector('.hero-orb');
+    if (cursor && ring) {
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        // Subtle hero glow parallax
+        if (heroOrb) {
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          const dx = (mx - centerX) / window.innerWidth;
+          const dy = (my - centerY) / window.innerHeight;
+          const strength = 40; // max px offset for a clearer effect
+          heroOrb.style.setProperty('--hero-orb-x', `${dx * strength}px`);
+          heroOrb.style.setProperty('--hero-orb-y', `${dy * strength}px`);
+        }
+      });
+      function animateCursor() {
+        cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+    }
   }
+
+  // Project expand/collapse (keyboard + aria)
+  const projectCards = Array.from(document.querySelectorAll('[data-project]'));
+  function closeAllProjects() {
+    projectCards.forEach(card => {
+      card.classList.remove('open');
+      const btn = card.querySelector('.project-btn');
+      const expand = card.querySelector('.project-expand');
+      const bars = card.querySelectorAll('.project-metric-bar');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      if (expand) expand.setAttribute('aria-hidden', 'true');
+      bars.forEach(bar => { bar.style.width = '0%'; });
+    });
+  }
+  function toggleProject(card) {
+    const isOpen = card.classList.contains('open');
+    closeAllProjects();
+    if (!isOpen) {
+      card.classList.add('open');
+      const btn = card.querySelector('.project-btn');
+      const expand = card.querySelector('.project-expand');
+      const bars = card.querySelectorAll('.project-metric-bar');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+      if (expand) expand.setAttribute('aria-hidden', 'false');
+      // animate metric bars
+      requestAnimationFrame(() => {
+        bars.forEach(bar => {
+          const level = bar.getAttribute('data-level') || '0';
+          bar.style.width = `${level}%`;
+        });
+      });
+    }
+  }
+  projectCards.forEach(card => {
+    const btn = card.querySelector('.project-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => toggleProject(card));
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleProject(card); }
+      if (e.key === 'Escape') { e.preventDefault(); closeAllProjects(); }
+    });
+  });
 
   // Nav scroll
   const nav = document.getElementById('nav');
@@ -578,5 +985,6 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => obs.observe(el));
 </script>
+</main>
 </body>
 </html>
