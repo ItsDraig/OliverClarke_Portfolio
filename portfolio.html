@@ -477,14 +477,18 @@
   .ai-timeline-step-badge {
     width: 22px; height: 22px;
     border: 1px solid var(--accent);
+    padding-right: 2px;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--ff-display); font-style: italic;
-    font-size: 0.82rem; color: var(--accent);
+    font-style: italic;
+    font-size: 0.65rem; color: var(--accent);
     background: rgba(181, 184, 122, 0.05); flex-shrink: 0;
   }
-  .ai-timeline-step-label-main { color: var(--text-soft); }
-  .ai-timeline-step-label-sub { font-family: var(--ff-text); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 0.7rem; color: var(--muted); }
-  .ai-timeline-step-content { display: flex; flex-direction: column; gap: 2px; }
+  .ai-timeline-step-label-main { color: var(--text-soft); line-height: 1.2; }
+  .ai-timeline-step-label-sub { font-family: var(--ff-text); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 0.7rem; color: var(--muted); line-height: 1.2; }
+  .ai-timeline-step-content { display: flex; flex-direction: column; gap: 2px; justify-content: center; }
+  .ai-timeline-step {
+    text-align: left;
+  }
   .ai-timeline-step[aria-selected="true"], .ai-timeline-step:hover {
     border-color: var(--accent); background: rgba(184, 177, 122, 0.07);
     color: var(--text); transform: translateX(2px);
