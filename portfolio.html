@@ -203,8 +203,15 @@
                 <div class="project-links">
                   <a href="https://github.com/ItsDraig/LetsCook-frontend" target="_blank" class="project-link github">⌥ GitHub FE</a>
                   <a href="https://github.com/ItsDraig/LetsCook-backend" target="_blank" class="project-link github">⌥ GitHub BE</a>
-                  <a href="#" target="_blank" class="project-link live">Download ↓</a>
+                  <a href="#" onclick="document.getElementById('dl-modal').style.display='flex'; return false;" class="project-link live">Download ↓</a>
                 </div>
+                <div id="dl-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); align-items:center; justify-content:center; z-index:1000;">
+                <div style="background:#fff; border-radius:12px; border:0.5px solid #e5e5e5; padding:2rem; max-width:360px; width:90%; text-align:center;">
+                  <h2 style="font-size:17px; color:#666; font-weight:500; margin:0 0 0.5rem;">Not available yet</h2>
+                  <p style="font-size:14px; color:#666; line-height:1.6; margin:0 0 1.5rem;">This app isn't available for download currently. Check back soon!</p>
+                  <button onclick="document.getElementById('dl-modal').style.display='none'" style="padding:8px 24px; border-radius:8px; border:1px solid #ddd; background:#fff; font-size:14px; cursor:pointer;">Got it</button>
+                </div>
+              </div>
               </div>
             </div>
           </div>
@@ -269,7 +276,7 @@
                 </div>
                 <div class="project-links">
                   <a href="https://github.com/ItsDraig/Draftr" target="_blank" class="project-link github">⌥ GitHub</a>
-                  <a href="#" target="_blank" class="project-link live">↗ Live Site</a>
+                  <a href="https://draftr.win/" target="_blank" class="project-link live">↗ Live Site</a>
                 </div>
               </div>
             </div>
