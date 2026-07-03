@@ -10,38 +10,43 @@
 <meta property="og:title" content="Oliver Clarke | Developer" />
 <meta property="og:description" content="Full-stack developer building purposeful, well-engineered software." />
 <meta property="og:type" content="website" />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <a href="#main" class="skip-link">Skip to content</a>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Oliver <em>Clarke</em></a>
+      <a href="#" class="nav-prompt" aria-label="Oliver Clarke, back to top">
+        <span class="nav-prompt-user">oliver@portfolio</span><span class="nav-prompt-sep">:~$</span><span class="blink-cursor" aria-hidden="true"></span>
+      </a>
       <div class="nav-actions">
+        <form class="nav-cmd" id="navCmdForm" role="search" aria-label="Command navigation">
+          <label for="navCmdInput" class="sr-only">Type a command, try "help"</label>
+          <input type="text" id="navCmdInput" class="nav-cmd-input" placeholder="type a command… try 'help'" autocomplete="off" spellcheck="false" />
+        </form>
         <ul class="nav-links">
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#ai">AI</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#skills">[skills]</a></li>
+          <li><a href="#work">[work]</a></li>
+          <li><a href="#ai">[ai]</a></li>
+          <li><a href="#about">[about]</a></li>
+          <li><a href="#contact">[contact]</a></li>
         </ul>
-        <a class="nav-cta" href="OliverClarke_Resume.pdf" target="_blank" rel="noopener">Resume ↓</a>
+        <a class="nav-cta" href="OliverClarke_Resume.pdf" target="_blank" rel="noopener">[resume ↓]</a>
         <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
       </div>
     </div>
+    <div class="nav-cmd-output" id="navCmdOutput" aria-live="polite"></div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#skills">Skills</a>
-      <a href="#work">Work</a>
-      <a href="#ai">AI</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="OliverClarke_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="#skills">skills</a>
+      <a href="#work">work</a>
+      <a href="#ai">ai</a>
+      <a href="#about">about</a>
+      <a href="#contact">contact</a>
+      <a href="OliverClarke_Resume.pdf" target="_blank" rel="noopener">resume</a>
     </div>
   </div>
 </nav>
@@ -49,39 +54,41 @@
 <main id="main">
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-rules" aria-hidden="true"></div>
-  <div class="hero-bracket" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-tag">
-        <span class="hero-tag-num">—</span>
-        Full-Stack Developer
-      </div>
-      <h1 class="hero-name">
-        <span class="first">Oliver</span>
-        <span class="last">Clarke</span>
-      </h1>
-      <div class="hero-rule">
-        <div class="hero-rule-line"></div>
-        <span class="hero-rule-text">builds apps.</span>
-      </div>
-      <p class="hero-bio">
-        I craft purposeful, well-engineered software, from sleek interfaces to robust backends.
-        Currently open to new opportunities and interesting problems.
-      </p>
-      <div class="hero-bullets" aria-label="Highlights">
-        <div class="hero-bullet"><span class="dot">—</span><span><strong>Product-minded engineering.</strong> I ship features that feel great to use.</span></div>
-        <div class="hero-bullet"><span class="dot">—</span><span><strong>Full-stack range.</strong> React/TS, APIs, databases, deployment.</span></div>
-        <div class="hero-bullet"><span class="dot">—</span><span><strong>AI-accelerated workflow.</strong> Faster iteration without sacrificing code quality.</span></div>
-      </div>
-      <div class="hero-actions">
-        <a href="#work" class="btn-primary">View my work ↓</a>
-        <a href="#contact" class="btn-ghost">Get in touch →</a>
-        <a href="OliverClarke_Resume.pdf" target="_blank" rel="noopener" class="btn-ghost">Resume ↓</a>
-      </div>
-      <div class="status">
-        <span class="status-dot"></span>
-        Available for opportunities
+      <div class="term-window hero-term">
+        <div class="term-titlebar"><span>~/oliver/whoami.sh</span><span class="term-titlebar-dim">— zsh</span></div>
+        <div class="term-body">
+          <p class="term-line"><span class="term-prompt">$</span> whoami</p>
+          <h1 class="term-out hero-name" data-type><span class="type-target">Oliver Clarke</span></h1>
+
+          <p class="term-line reveal reveal-delay-1"><span class="term-prompt">$</span> cat role.txt</p>
+          <p class="term-out reveal reveal-delay-1 hero-role" data-type><span class="type-target">Full-Stack Developer — builds apps.</span></p>
+
+          <p class="term-line reveal reveal-delay-2"><span class="term-prompt">$</span> cat bio.md</p>
+          <p class="term-out reveal reveal-delay-2 hero-bio">
+            I craft purposeful, well-engineered software, from sleek interfaces to robust backends.
+            Currently open to new opportunities and interesting problems.
+          </p>
+
+          <p class="term-line reveal reveal-delay-3"><span class="term-prompt">$</span> cat highlights.txt</p>
+          <ul class="hero-bullets term-out reveal reveal-delay-3" aria-label="Highlights">
+            <li><span class="dot">[+]</span><span><strong>Product-minded engineering.</strong> I ship features that feel great to use.</span></li>
+            <li><span class="dot">[+]</span><span><strong>Full-stack range.</strong> React/TS, APIs, databases, deployment.</span></li>
+            <li><span class="dot">[+]</span><span><strong>AI-accelerated workflow.</strong> Faster iteration without sacrificing code quality.</span></li>
+          </ul>
+
+          <div class="hero-actions reveal reveal-delay-4">
+            <a href="#work" class="btn-cmd btn-cmd-primary">./view-work.sh</a>
+            <a href="#contact" class="btn-cmd">./contact.sh</a>
+            <a href="OliverClarke_Resume.pdf" target="_blank" rel="noopener" class="btn-cmd">curl resume.pdf -o resume.pdf</a>
+          </div>
+
+          <p class="term-line reveal reveal-delay-5"><span class="term-prompt">$</span> echo $STATUS</p>
+          <p class="term-out reveal reveal-delay-5 status">
+            <span class="status-dot"></span> available_for_opportunities=<span class="status-true">true</span><span class="blink-cursor" aria-hidden="true"></span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -90,47 +97,94 @@
 <!-- Skills -->
 <section id="skills">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">01</span> Skills &amp; Tools</div>
-    <div class="skills-grid">
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-icon">Frontend</div>
-        <div class="skill-name">React &amp; TypeScript</div>
-        <div class="skill-desc">Building component-driven UIs with clean state management and attention to UX.</div>
+    <div class="section-label reveal"><span class="section-label-num">01</span> // skills.sh</div>
+    <div class="term-window reveal-term">
+      <div class="term-titlebar"><span>~/oliver$ ls -la ./skills --verbose</span></div>
+      <div class="term-body skills-list" data-skill-group>
+
+        <div class="skill-row" data-skill-item data-skill-cat="frontend">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rwxr-xr-x</span>
+            <span class="skill-cat">frontend</span>
+            <span class="skill-name">React &amp; TypeScript</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">Building component-driven UIs with clean state management and attention to UX.</p>
+        </div>
+
+        <div class="skill-row" data-skill-item data-skill-cat="backend">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rwxr-xr-x</span>
+            <span class="skill-cat">backend</span>
+            <span class="skill-name">Node.js &amp; Python</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">RESTful APIs, authentication systems, and server-side architecture.</p>
+        </div>
+
+        <div class="skill-row" data-skill-item data-skill-cat="data">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rw-r--r--</span>
+            <span class="skill-cat">data</span>
+            <span class="skill-name">SQL &amp; PostgreSQL</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">Schema design, query optimization, and data modeling for production systems.</p>
+        </div>
+
+        <div class="skill-row" data-skill-item data-skill-cat="infra">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rwxr-xr-x</span>
+            <span class="skill-cat">infra</span>
+            <span class="skill-name">Git, Docker &amp; Cloud</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">Version control, containerization, and deployment pipelines on AWS/Vercel.</p>
+        </div>
+
+        <div class="skill-row" data-skill-item data-skill-cat="languages">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rwxr-xr-x</span>
+            <span class="skill-cat">languages</span>
+            <span class="skill-name">C# .NET, Java, C++ &amp; Go</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">Unity, Object Oriented Programming, systems design and large project architecture. Recently picked up C++ and Go, with hands-on experience in memory management and performance optimization.</p>
+        </div>
+
+        <div class="skill-row" data-skill-item data-skill-cat="ai toolkit">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rwxr-xr-x</span>
+            <span class="skill-cat">ai toolkit</span>
+            <span class="skill-name">Cursor, Claude &amp; LLM APIs</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">Using AI to accelerate iteration, improve reliability, and ship faster with guardrails.</p>
+        </div>
+
+        <div class="skill-row" data-skill-item data-skill-cat="design">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rw-r--r--</span>
+            <span class="skill-cat">design</span>
+            <span class="skill-name">Figma &amp; Adobe Suite</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">UI Design and UX Design, interactive prototypes, systems design.</p>
+        </div>
+
+        <div class="skill-row" data-skill-item data-skill-cat="testing">
+          <button class="skill-row-btn" type="button" aria-pressed="false">
+            <span class="skill-perm">-rwxr-xr-x</span>
+            <span class="skill-cat">testing</span>
+            <span class="skill-name">Jest, Playwright &amp; Pytest</span>
+            <span class="skill-toggle" aria-hidden="true">+</span>
+          </button>
+          <p class="skill-desc sr-only">Unit, integration, and end-to-end testing to keep features stable as the codebase grows.</p>
+        </div>
+
       </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-icon">Backend</div>
-        <div class="skill-name">Node.js &amp; Python</div>
-        <div class="skill-desc">RESTful APIs, authentication systems, and server-side architecture.</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-icon">Data</div>
-        <div class="skill-name">SQL &amp; PostgreSQL</div>
-        <div class="skill-desc">Schema design, query optimization, and data modeling for production systems.</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-4">
-        <div class="skill-icon">Infra</div>
-        <div class="skill-name">Git, Docker &amp; Cloud</div>
-        <div class="skill-desc">Version control, containerization, and deployment pipelines on AWS/Vercel.</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-5">
-        <div class="skill-icon">Languages</div>
-        <div class="skill-name">C# .NET &amp; Java</div>
-        <div class="skill-desc">Unity, Object Oriented Programming, systems design and large project architecture.</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-6">
-        <div class="skill-icon">AI Toolkit</div>
-        <div class="skill-name">Cursor, Claude &amp; LLM APIs</div>
-        <div class="skill-desc">Using AI to accelerate iteration, improve reliability, and ship faster with guardrails.</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-7">
-        <div class="skill-icon">Design</div>
-        <div class="skill-name">Figma &amp; Adobe Suite</div>
-        <div class="skill-desc">UI Design and UX Design, interactive prototypes, systems design.</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-8">
-        <div class="skill-icon">Testing &amp; Quality</div>
-        <div class="skill-name">Jest, Playwright &amp; Pytest</div>
-        <div class="skill-desc">Unit, integration, and end-to-end testing to keep features stable as the codebase grows.</div>
+      <div class="skills-output" id="skillsOutput" aria-live="polite">
+        <p class="term-line"><span class="term-prompt">$</span> <span class="skills-output-prompt">select a skill above to inspect it</span></p>
       </div>
     </div>
   </div>
@@ -139,229 +193,230 @@
 <!-- Projects -->
 <section id="work">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">02</span> Selected Work</div>
-    <div class="projects-list">
+    <div class="section-label reveal"><span class="section-label-num">02</span> // work.log</div>
+    <div class="term-window reveal-term">
+      <div class="term-titlebar"><span>~/oliver$ git log --oneline --stat</span></div>
+      <div class="term-body projects-list">
 
-      <div class="project-card reveal" data-project>
-        <button class="project-row project-btn" type="button" aria-expanded="false">
-          <div>
-            <div class="project-meta">
-              <span class="project-num">i.</span>
-              <span class="project-tag">Full-Stack</span>
-            </div>
-            <div class="project-title">Let's Cook</div>
-            <div class="project-desc">
-              Let's Cook helps you make the most of what's already in your kitchen by tracking your
-              on-hand ingredients and their expiration dates to reduce food waste. It then generates creative,
-              delicious recipe ideas tailored to what you have, so you can use up ingredients in time and cook with confidence.
-            </div>
-            <div class="project-stack">
-              <span class="stack-pill">React Native</span>
-              <span class="stack-pill">Node.js</span>
-              <span class="stack-pill">PostgreSQL</span>
-              <span class="stack-pill">OpenAI</span>
-              <span class="stack-pill">Supabase</span>
-              <span class="stack-pill">Vercel</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </button>
-        <div class="project-expand" aria-hidden="true">
-          <div class="project-expand-inner">
-            <div class="project-expand-content">
-              <div>
-                <div class="project-detail-label">The details</div>
-                <div class="project-detail-text">
-                  Let's Cook is a full-stack kitchen companion that turns whatever is in your pantry into concrete meal ideas. Users track ingredients and expiry dates, and the app highlights what needs to be used first. A single tap sends your pantry, portions, and dietary prefs to the OpenAI API to generate structured recipes with steps, ingredients, and cook time, backed by Spoonacular for ingredient data and Supabase for auth and real-time sync. On the frontend, React Native components are organized around a single pantry state so recipe generation, expiry alerts, and dietary filters all stay in sync.
-                </div>
+        <div class="project-card" data-project>
+          <button class="project-row project-btn" type="button" aria-expanded="false">
+            <div>
+              <div class="project-meta">
+                <span class="project-hash">#a1e92c</span>
+                <span class="project-tag">full-stack</span>
               </div>
-              <div class="project-insights">
-                <div class="project-detail-label">Project snapshot</div>
-                <div class="project-metrics">
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Scale</span>
-                      <span class="project-metric-value">High</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="88"></div></div>
-                  </div>
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Complexity</span>
-                      <span class="project-metric-value">Full-stack + AI</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="85"></div></div>
-                  </div>
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Production-readiness</span>
-                      <span class="project-metric-value">Auth, sync, APIs</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="80"></div></div>
-                  </div>
-                </div>
-                <div class="project-links">
-                  <a href="https://github.com/ItsDraig/LetsCook-frontend" target="_blank" class="project-link github">⌥ GitHub FE</a>
-                  <a href="https://github.com/ItsDraig/LetsCook-backend" target="_blank" class="project-link github">⌥ GitHub BE</a>
-                  <a href="#" onclick="document.getElementById('dl-modal').style.display='flex'; return false;" class="project-link live">Download ↓</a>
-                </div>
-                <div id="dl-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); align-items:center; justify-content:center; z-index:1000;">
-                <div style="background:#fff; border-radius:12px; border:0.5px solid #e5e5e5; padding:2rem; max-width:360px; width:90%; text-align:center;">
-                  <h2 style="font-size:17px; color:#666; font-weight:500; margin:0 0 0.5rem;">Not available yet</h2>
-                  <p style="font-size:14px; color:#666; line-height:1.6; margin:0 0 1.5rem;">This app isn't available for download currently. Check back soon!</p>
-                  <button onclick="document.getElementById('dl-modal').style.display='none'" style="padding:8px 24px; border-radius:8px; border:1px solid #ddd; background:#fff; font-size:14px; cursor:pointer;">Got it</button>
-                </div>
+              <div class="project-title">Let's Cook</div>
+              <div class="project-desc">
+                Let's Cook helps you make the most of what's already in your kitchen by tracking your
+                on-hand ingredients and their expiration dates to reduce food waste. It then generates creative,
+                delicious recipe ideas tailored to what you have, so you can use up ingredients in time and cook with confidence.
               </div>
+              <div class="project-stack">
+                <span class="stack-pill">react-native</span>
+                <span class="stack-pill">node.js</span>
+                <span class="stack-pill">postgresql</span>
+                <span class="stack-pill">openai</span>
+                <span class="stack-pill">supabase</span>
+                <span class="stack-pill">vercel</span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-project>
-        <button class="project-row project-btn" type="button" aria-expanded="false">
-          <div>
-            <div class="project-meta">
-              <span class="project-num">ii.</span>
-              <span class="project-tag">API / Backend</span>
-              <span class="project-tag">Open Source</span>
-            </div>
-            <div class="project-title">Project Draftr</div>
-            <div class="project-desc">
-              Utilizing Riot Games official API. Project Draftr is a tool for analyzing League of Legends team compositions. Including information about their strengths, weaknesses, and how well they would perform into other compositions.
-            </div>
-            <div class="project-stack">
-              <span class="stack-pill">React</span>
-              <span class="stack-pill">Python</span>
-              <span class="stack-pill">FastAPI</span>
-              <span class="stack-pill">Vite</span>
-              <span class="stack-pill">Data Analytics</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </button>
-        <div class="project-expand" aria-hidden="true">
-          <div class="project-expand-inner">
-            <div class="project-expand-content">
-              <div>
-                <div class="project-detail-label">The details</div>
-                <div class="project-detail-text">
-                  Project Draftr is a full-stack analysis tool for five-champion League of Legends team comps. It pulls live win rates by rank from the Riot Games API, scores pairwise champion synergy, and classifies each draft into an archetype (e.g. teamfight, pick, front-to-back) with a letter grade so players can quickly understand strengths, gaps, and win conditions. Under the hood, a FastAPI backend handles data fetching, caching, and composition scoring, exposed to a React frontend that focuses on clear visual feedback as you tweak drafts.
-                </div>
-              </div>
-              <div class="project-insights">
-                <div class="project-detail-label">Project snapshot</div>
-                <div class="project-metrics">
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Scale</span>
-                      <span class="project-metric-value">Medium</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="70"></div></div>
-                  </div>
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Complexity</span>
-                      <span class="project-metric-value">API + analytics</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="78"></div></div>
-                  </div>
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Data focus</span>
-                      <span class="project-metric-value">Stats + modeling</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="82"></div></div>
+            <div class="project-toggle">+</div>
+          </button>
+          <div class="project-expand" aria-hidden="true">
+            <div class="project-expand-inner">
+              <div class="project-expand-content">
+                <div>
+                  <div class="project-detail-label">$ cat README.md</div>
+                  <div class="project-detail-text">
+                    Let's Cook is a full-stack kitchen companion that turns whatever is in your pantry into concrete meal ideas. Users track ingredients and expiry dates, and the app highlights what needs to be used first. A single tap sends your pantry, portions, and dietary prefs to the OpenAI API to generate structured recipes with steps, ingredients, and cook time, backed by Spoonacular for ingredient data and Supabase for auth and real-time sync. On the frontend, React Native components are organized around a single pantry state so recipe generation, expiry alerts, and dietary filters all stay in sync.
                   </div>
                 </div>
-                <div class="project-links">
-                  <a href="https://github.com/ItsDraig/Draftr" target="_blank" class="project-link github">⌥ GitHub</a>
-                  <a href="https://draftr.win/" target="_blank" class="project-link live">↗ Live Site</a>
+                <div class="project-insights">
+                  <div class="project-detail-label">$ ./benchmark.sh --snapshot</div>
+                  <div class="project-metrics">
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">scale</span>
+                        <span class="project-metric-value">high</span>
+                      </div>
+                      <span class="ascii-bar" data-level="88" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">complexity</span>
+                        <span class="project-metric-value">full-stack + ai</span>
+                      </div>
+                      <span class="ascii-bar" data-level="85" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">production-readiness</span>
+                        <span class="project-metric-value">auth, sync, apis</span>
+                      </div>
+                      <span class="ascii-bar" data-level="80" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/ItsDraig/LetsCook-frontend" target="_blank" class="project-link github">./github --frontend</a>
+                    <a href="https://github.com/ItsDraig/LetsCook-backend" target="_blank" class="project-link github">./github --backend</a>
+                    <a href="#" onclick="document.getElementById('dl-modal').style.display='flex'; return false;" class="project-link live">./download.sh</a>
+                  </div>
+                  <div id="dl-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:1000;">
+                  <div style="background:var(--surface); border:1px solid var(--border-light); padding:2rem; max-width:360px; width:90%; text-align:center; font-family:var(--ff-ui);">
+                    <h2 style="font-size:15px; color:var(--text-soft); font-weight:600; margin:0 0 0.5rem;">// not available yet</h2>
+                    <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0 0 1.5rem;">This app isn't available for download currently. Check back soon!</p>
+                    <button onclick="document.getElementById('dl-modal').style.display='none'" style="padding:8px 24px; border:1px solid var(--border-light); background:transparent; color:var(--text-soft); font-family:var(--ff-ui); font-size:13px; cursor:pointer;">[ got it ]</button>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card reveal" data-project>
-        <button class="project-row project-btn" type="button" aria-expanded="false">
-          <div>
-            <div class="project-meta">
-              <span class="project-num">iii.</span>
-              <span class="project-tag">Unity Game</span>
-            </div>
-            <div class="project-title">SPECTRE QUEST: Eternal Ascent</div>
-            <div class="project-desc">
-              Large scale Unity game built in C#. Gained extensive experience in designing large project architecture, including practices in scalability
-              and efficiency. Developed project management skills, including setting timelines, coordinating deliverables,
-              and resolving various challenges.
-            </div>
-            <div class="project-stack">
-              <span class="stack-pill">Unity</span>
-              <span class="stack-pill">C# .NET</span>
-              <span class="stack-pill">Large Scale Architecture</span>
-              <span class="stack-pill">Project Management</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </button>
-        <div class="project-expand" aria-hidden="true">
-          <div class="project-expand-inner">
-            <div class="project-expand-content">
-              <div>
-                <div class="project-detail-label">The details</div>
-                <div class="project-detail-text">
-                  SPECTRE QUEST began as a small passion project and grew into a large-scale Unity title built over four years. It pushed my skills in building reusable gameplay systems, optimizing performance for complex scenes, and putting real project management in place around scope, milestones, and collaboration. The codebase is structured around modular systems (abilities, enemies, levels) that can be extended without rewriting core game loops, which was critical as scope evolved.
-                </div>
+        <div class="project-card" data-project>
+          <button class="project-row project-btn" type="button" aria-expanded="false">
+            <div>
+              <div class="project-meta">
+                <span class="project-hash">#4f8d21</span>
+                <span class="project-tag">api / backend</span>
+                <span class="project-tag">open source</span>
               </div>
-              <div class="project-insights">
-                <div class="project-detail-label">Project snapshot</div>
-                <div class="project-metrics">
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Scale</span>
-                      <span class="project-metric-value">Very high</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="95"></div></div>
-                  </div>
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Complexity</span>
-                      <span class="project-metric-value">Game systems</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="90"></div></div>
-                  </div>
-                  <div class="project-metric">
-                    <div class="project-metric-label-row">
-                      <span class="project-metric-label">Leadership</span>
-                      <span class="project-metric-value">Planning &amp; delivery</span>
-                    </div>
-                    <div class="project-metric-bar-wrap"><div class="project-metric-bar" data-level="88"></div></div>
+              <div class="project-title">Project Draftr</div>
+              <div class="project-desc">
+                Utilizing Riot Games official API. Project Draftr is a tool for analyzing League of Legends team compositions. Including information about their strengths, weaknesses, and how well they would perform into other compositions.
+              </div>
+              <div class="project-stack">
+                <span class="stack-pill">react</span>
+                <span class="stack-pill">python</span>
+                <span class="stack-pill">fastapi</span>
+                <span class="stack-pill">vite</span>
+                <span class="stack-pill">data analytics</span>
+              </div>
+            </div>
+            <div class="project-toggle">+</div>
+          </button>
+          <div class="project-expand" aria-hidden="true">
+            <div class="project-expand-inner">
+              <div class="project-expand-content">
+                <div>
+                  <div class="project-detail-label">$ cat README.md</div>
+                  <div class="project-detail-text">
+                    Project Draftr is a full-stack analysis tool for five-champion League of Legends team comps. It pulls live win rates by rank from the Riot Games API, scores pairwise champion synergy, and classifies each draft into an archetype (e.g. teamfight, pick, front-to-back) with a letter grade so players can quickly understand strengths, gaps, and win conditions. Under the hood, a FastAPI backend handles data fetching, caching, and composition scoring, exposed to a React frontend that focuses on clear visual feedback as you tweak drafts.
                   </div>
                 </div>
-                <div class="project-links">
-                  <a href="https://spectrequest.com/" target="_blank" class="project-link live">↗ Live Site</a>
+                <div class="project-insights">
+                  <div class="project-detail-label">$ ./benchmark.sh --snapshot</div>
+                  <div class="project-metrics">
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">scale</span>
+                        <span class="project-metric-value">medium</span>
+                      </div>
+                      <span class="ascii-bar" data-level="70" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">complexity</span>
+                        <span class="project-metric-value">api + analytics</span>
+                      </div>
+                      <span class="ascii-bar" data-level="78" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">data focus</span>
+                        <span class="project-metric-value">stats + modeling</span>
+                      </div>
+                      <span class="ascii-bar" data-level="82" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/ItsDraig/Draftr" target="_blank" class="project-link github">./github</a>
+                    <a href="https://draftr.win/" target="_blank" class="project-link live">./live --open</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
+        <div class="project-card" data-project>
+          <button class="project-row project-btn" type="button" aria-expanded="false">
+            <div>
+              <div class="project-meta">
+                <span class="project-hash">#9c31b7</span>
+                <span class="project-tag">unity game</span>
+              </div>
+              <div class="project-title">SPECTRE QUEST: Eternal Ascent</div>
+              <div class="project-desc">
+                Large scale Unity game built in C#. Gained extensive experience in designing large project architecture, including practices in scalability
+                and efficiency. Developed project management skills, including setting timelines, coordinating deliverables,
+                and resolving various challenges.
+              </div>
+              <div class="project-stack">
+                <span class="stack-pill">unity</span>
+                <span class="stack-pill">c# .net</span>
+                <span class="stack-pill">large scale architecture</span>
+                <span class="stack-pill">project management</span>
+              </div>
+            </div>
+            <div class="project-toggle">+</div>
+          </button>
+          <div class="project-expand" aria-hidden="true">
+            <div class="project-expand-inner">
+              <div class="project-expand-content">
+                <div>
+                  <div class="project-detail-label">$ cat README.md</div>
+                  <div class="project-detail-text">
+                    SPECTRE QUEST began as a small passion project and grew into a large-scale Unity title built over four years. It pushed my skills in building reusable gameplay systems, optimizing performance for complex scenes, and putting real project management in place around scope, milestones, and collaboration. The codebase is structured around modular systems (abilities, enemies, levels) that can be extended without rewriting core game loops, which was critical as scope evolved.
+                  </div>
+                </div>
+                <div class="project-insights">
+                  <div class="project-detail-label">$ ./benchmark.sh --snapshot</div>
+                  <div class="project-metrics">
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">scale</span>
+                        <span class="project-metric-value">very high</span>
+                      </div>
+                      <span class="ascii-bar" data-level="95" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">complexity</span>
+                        <span class="project-metric-value">game systems</span>
+                      </div>
+                      <span class="ascii-bar" data-level="90" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">leadership</span>
+                        <span class="project-metric-value">planning &amp; delivery</span>
+                      </div>
+                      <span class="ascii-bar" data-level="88" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://spectrequest.com/" target="_blank" class="project-link live">./live --open</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
   <div style="width: 100%; text-align: center;">
-    <p style="color: var(--muted); margin-top: 1.5rem; font-family: var(--ff-text); font-style: italic; font-size: 0.9rem;">
-      More projects coming soon.
-    </p>
+    <p class="work-more">// more projects compiling...</p>
   </div>
 </section>
 
 <!-- AI Usage -->
 <section id="ai">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">03</span> AI Usage</div>
+    <div class="section-label reveal"><span class="section-label-num">03</span> // ai-workflow.pipe</div>
     <div class="ai-grid">
       <div class="ai-text reveal">
         <p>
@@ -375,52 +430,49 @@
         <p>
           This also makes collaboration easier: I can produce clearer PR descriptions, faster spikes, and more complete documentation, without sacrificing ownership of the solution.
         </p>
-        <div class="ai-media">
-          <div class="ai-media-label">
-            <span>Workflow in practice</span>
-            <span>Hover steps to explore</span>
-          </div>
-          <div class="ai-media-placeholder">
+        <div class="term-window ai-media">
+          <div class="term-titlebar"><span>~/oliver$ workflow --pipe discover|draft|harden|ship</span></div>
+          <div class="term-body">
             <div class="ai-timeline" role="tablist" aria-label="AI-assisted development workflow">
               <div class="ai-timeline-steps">
                 <button class="ai-timeline-step" type="button" role="tab" aria-selected="true" aria-controls="ai-step-discover" id="ai-step-discover-tab" data-step="discover">
-                  <div class="ai-timeline-step-badge">1</div>
+                  <div class="ai-timeline-step-badge">01</div>
                   <div class="ai-timeline-step-content">
-                    <span class="ai-timeline-step-label-main">Discover &amp; clarify</span>
-                    <span class="ai-timeline-step-label-sub">Problem, constraints, success criteria</span>
+                    <span class="ai-timeline-step-label-main">discover &amp; clarify</span>
+                    <span class="ai-timeline-step-label-sub">problem, constraints, success criteria</span>
                   </div>
                 </button>
                 <button class="ai-timeline-step" type="button" role="tab" aria-selected="false" aria-controls="ai-step-draft" id="ai-step-draft-tab" data-step="draft">
-                  <div class="ai-timeline-step-badge">2</div>
+                  <div class="ai-timeline-step-badge">02</div>
                   <div class="ai-timeline-step-content">
-                    <span class="ai-timeline-step-label-main">Draft with AI</span>
-                    <span class="ai-timeline-step-label-sub">Spike, scaffold, or refactor</span>
+                    <span class="ai-timeline-step-label-main">draft with ai</span>
+                    <span class="ai-timeline-step-label-sub">spike, scaffold, or refactor</span>
                   </div>
                 </button>
                 <button class="ai-timeline-step" type="button" role="tab" aria-selected="false" aria-controls="ai-step-harden" id="ai-step-harden-tab" data-step="harden">
-                  <div class="ai-timeline-step-badge">3</div>
+                  <div class="ai-timeline-step-badge">03</div>
                   <div class="ai-timeline-step-content">
-                    <span class="ai-timeline-step-label-main">Harden &amp; verify</span>
-                    <span class="ai-timeline-step-label-sub">Types, tests, edge cases</span>
+                    <span class="ai-timeline-step-label-main">harden &amp; verify</span>
+                    <span class="ai-timeline-step-label-sub">types, tests, edge cases</span>
                   </div>
                 </button>
                 <button class="ai-timeline-step" type="button" role="tab" aria-selected="false" aria-controls="ai-step-ship" id="ai-step-ship-tab" data-step="ship">
-                  <div class="ai-timeline-step-badge">4</div>
+                  <div class="ai-timeline-step-badge">04</div>
                   <div class="ai-timeline-step-content">
-                    <span class="ai-timeline-step-label-main">Ship &amp; document</span>
-                    <span class="ai-timeline-step-label-sub">PRs, notes, follow-ups</span>
+                    <span class="ai-timeline-step-label-main">ship &amp; document</span>
+                    <span class="ai-timeline-step-label-sub">prs, notes, follow-ups</span>
                   </div>
                 </button>
               </div>
               <div class="ai-timeline-detail" role="tabpanel" id="ai-timeline-detail" aria-labelledby="ai-step-discover-tab">
-                <div class="ai-timeline-detail-title" id="ai-timeline-detail-title">Discover &amp; clarify</div>
+                <div class="ai-timeline-detail-title" id="ai-timeline-detail-title">$ discover &amp; clarify</div>
                 <div class="ai-timeline-detail-body" id="ai-timeline-detail-body">
                   <strong>Start with the problem, not the prompt.</strong> I write a short brief in natural language (goal, inputs, constraints, "done" criteria), then use AI to pressure-test edge cases and missing requirements before touching code.
                 </div>
                 <div class="ai-timeline-detail-pills" id="ai-timeline-detail-pills">
-                  <span class="ai-timeline-detail-pill">Clarify requirements</span>
-                  <span class="ai-timeline-detail-pill">Surface edge cases</span>
-                  <span class="ai-timeline-detail-pill">Align on success</span>
+                  <span class="ai-timeline-detail-pill">clarify requirements</span>
+                  <span class="ai-timeline-detail-pill">surface edge cases</span>
+                  <span class="ai-timeline-detail-pill">align on success</span>
                 </div>
               </div>
             </div>
@@ -428,28 +480,34 @@
         </div>
       </div>
       <div class="ai-cards reveal reveal-delay-2">
-        <div class="ai-card">
-          <h3>Where AI helps most</h3>
-          <ul>
-            <li><strong>Scaffolding &amp; refactors.</strong> Generate a first pass, then tighten types, naming, structure.</li>
-            <li><strong>Debugging.</strong> Reproduce issues, form hypotheses, and validate fixes with targeted tests.</li>
-            <li><strong>API &amp; data modeling.</strong> Propose schemas and endpoints, then verify constraints and edge cases.</li>
-          </ul>
+        <div class="term-window ai-card">
+          <div class="term-titlebar"><span>$ cat notes/where-it-helps.md</span></div>
+          <div class="term-body">
+            <ul>
+              <li><strong>Scaffolding &amp; refactors.</strong> Generate a first pass, then tighten types, naming, structure.</li>
+              <li><strong>Debugging.</strong> Reproduce issues, form hypotheses, and validate fixes with targeted tests.</li>
+              <li><strong>API &amp; data modeling.</strong> Propose schemas and endpoints, then verify constraints and edge cases.</li>
+            </ul>
+          </div>
         </div>
-        <div class="ai-card">
-          <h3>Guardrails I use</h3>
-          <ul>
-            <li><strong>Small diffs.</strong> Ship incremental changes with clear rollback paths.</li>
-            <li><strong>Verification.</strong> Tests, linting, and manual checks for UX and performance.</li>
-            <li><strong>Security awareness.</strong> Never paste secrets; validate auth, input, and data access.</li>
-          </ul>
+        <div class="term-window ai-card">
+          <div class="term-titlebar"><span>$ cat notes/guardrails.md</span></div>
+          <div class="term-body">
+            <ul>
+              <li><strong>Small diffs.</strong> Ship incremental changes with clear rollback paths.</li>
+              <li><strong>Verification.</strong> Tests, linting, and manual checks for UX and performance.</li>
+              <li><strong>Security awareness.</strong> Never paste secrets; validate auth, input, and data access.</li>
+            </ul>
+          </div>
         </div>
-        <div class="ai-card">
-          <h3>How I communicate it</h3>
-          <ul>
-            <li><strong>Transparent.</strong> I can explain what AI contributed and what I validated.</li>
-            <li><strong>Outcome-driven.</strong> Focus on cycle time, reliability, and product impact.</li>
-          </ul>
+        <div class="term-window ai-card">
+          <div class="term-titlebar"><span>$ cat notes/communication.md</span></div>
+          <div class="term-body">
+            <ul>
+              <li><strong>Transparent.</strong> I can explain what AI contributed and what I validated.</li>
+              <li><strong>Outcome-driven.</strong> Focus on cycle time, reliability, and product impact.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -459,43 +517,31 @@
 <!-- About -->
 <section id="about">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">04</span> About Me</div>
+    <div class="section-label reveal"><span class="section-label-num">04</span> // about.yml</div>
     <div class="about-grid">
-      <div class="about-text reveal">
-        <p>
-          I'm a multi-skilled developer with a background in VR and professional experience at Fullport Dev, where I've built modern full-stack applications with a focus on clean architecture and real-world impact.
-        </p>
-        <p>
-          I'm drawn to problems at the intersection of engineering and product thinking, while leveraging the incredible advancements in the field of AI. I'm working toward roles in technical leadership and software architecture.
-        </p>
-        <p>
-          Outside of work, I'm an indie game developer, guitarist, avid reader, and an aspiring golfer. I believe the best software comes from teams grounded in strong communication, genuine curiosity and interest.
-        </p>
+      <div class="term-window reveal-term">
+        <div class="term-titlebar"><span>~/oliver$ cat about.md</span></div>
+        <div class="term-body about-text">
+          <p>
+            I'm a multi-skilled developer with a background in VR and professional experience at Fullport Dev, where I've built modern full-stack applications with a focus on clean architecture and real-world impact.
+          </p>
+          <p>
+            I'm drawn to problems at the intersection of engineering and product thinking, while leveraging the incredible advancements in the field of AI. I'm working toward roles in technical leadership and software architecture.
+          </p>
+          <p>
+            Outside of work, I'm an indie game developer, guitarist, avid reader, and an aspiring golfer. I believe the best software comes from teams grounded in strong communication, genuine curiosity and interest.
+          </p>
+        </div>
       </div>
-      <div class="about-facts reveal reveal-delay-2">
-        <div class="about-fact">
-          <span class="fact-label">Based in</span>
-          <span class="fact-value">Toronto, ON</span>
-        </div>
-        <div class="about-fact">
-          <span class="fact-label">Focus</span>
-          <span class="fact-value">Full-Stack Development</span>
-        </div>
-        <div class="about-fact">
-          <span class="fact-label">Looking for</span>
-          <span class="fact-value">Full-time / Contract</span>
-        </div>
-        <div class="about-fact">
-          <span class="fact-label">Education</span>
-          <span class="fact-value">uOttawa — Honours BSc in Comp Sci</span>
-        </div>
-        <div class="about-fact">
-          <span class="fact-label">Languages</span>
-          <span class="fact-value">JS / TS / Python / C# .NET</span>
-        </div>
-        <div class="about-fact">
-          <span class="fact-label">Status</span>
-          <span class="fact-value" style="color: rgba(143,184,122,0.6);">Open to work ✦</span>
+      <div class="term-window reveal-term reveal-delay-2">
+        <div class="term-titlebar"><span>~/oliver$ cat config.yml</span></div>
+        <div class="term-body config-body">
+          <p class="config-row"><span class="config-key">based_in:</span><span class="config-value">Toronto, ON</span></p>
+          <p class="config-row"><span class="config-key">focus:</span><span class="config-value">Full-Stack Development</span></p>
+          <p class="config-row"><span class="config-key">looking_for:</span><span class="config-value">Full-time / Contract</span></p>
+          <p class="config-row"><span class="config-key">education:</span><span class="config-value">uOttawa — Honours BSc in Comp Sci</span></p>
+          <p class="config-row"><span class="config-key">languages:</span><span class="config-value">[js, ts, python, c#.net]</span></p>
+          <p class="config-row"><span class="config-key">status:</span><span class="config-value status-true">open_to_work: true ✦</span></p>
         </div>
       </div>
     </div>
@@ -505,43 +551,46 @@
 <!-- Contact -->
 <section id="contact">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">05</span> Get in Touch</div>
+    <div class="section-label reveal"><span class="section-label-num">05</span> // contact.sh</div>
     <div class="contact-inner">
       <div class="reveal">
-        <h2 class="contact-heading">Let's build something <em>great</em> together.</h2>
+        <h2 class="contact-heading">$ ./build-something <span class="contact-heading-accent">--together</span></h2>
         <p class="contact-sub">
           I'm currently open to full-time roles and interesting freelance projects.
           If you have a problem worth solving, I'd love to hear about it.
         </p>
       </div>
-      <div class="contact-links reveal reveal-delay-2">
-        <a href="mailto:olivercameronclarke@gmail.com" class="contact-link">
-          <div>
-            <div class="contact-link-label">Email</div>
-            <div class="contact-link-value">olivercameronclarke@gmail.com</div>
-          </div>
-        </a>
-        <a href="https://github.com/ItsDraig" target="_blank" class="contact-link">
-          <div>
-            <div class="contact-link-label">GitHub</div>
-            <div class="contact-link-value">github.com/ItsDraig</div>
-          </div>
-          <span class="contact-link-arrow">↗</span>
-        </a>
-        <a href="https://www.linkedin.com/in/oliver-cameron-clarke/" target="_blank" class="contact-link">
-          <div>
-            <div class="contact-link-label">LinkedIn</div>
-            <div class="contact-link-value">linkedin.com/in/oliver-cameron-clarke</div>
-          </div>
-          <span class="contact-link-arrow">↗</span>
-        </a>
-        <a href="OliverClarke_Resume.pdf" target="_blank" class="contact-link">
-          <div>
-            <div class="contact-link-label">Resume</div>
-            <div class="contact-link-value">Download PDF</div>
-          </div>
-          <span class="contact-link-arrow">↓</span>
-        </a>
+      <div class="term-window reveal-term reveal-delay-2">
+        <div class="term-titlebar"><span>~/oliver$ ./contact.sh --list</span></div>
+        <div class="term-body contact-links">
+          <a href="mailto:olivercameronclarke@gmail.com" class="contact-link">
+            <div>
+              <div class="contact-link-label">$ contact --email</div>
+              <div class="contact-link-value">olivercameronclarke@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://github.com/ItsDraig" target="_blank" class="contact-link">
+            <div>
+              <div class="contact-link-label">$ contact --github</div>
+              <div class="contact-link-value">github.com/ItsDraig</div>
+            </div>
+            <span class="contact-link-arrow">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/oliver-cameron-clarke/" target="_blank" class="contact-link">
+            <div>
+              <div class="contact-link-label">$ contact --linkedin</div>
+              <div class="contact-link-value">linkedin.com/in/oliver-cameron-clarke</div>
+            </div>
+            <span class="contact-link-arrow">↗</span>
+          </a>
+          <a href="OliverClarke_Resume.pdf" target="_blank" class="contact-link">
+            <div>
+              <div class="contact-link-label">$ contact --resume</div>
+              <div class="contact-link-value">download PDF</div>
+            </div>
+            <span class="contact-link-arrow">↓</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -550,7 +599,7 @@
 <div class="container">
   <footer>
     <span class="footer-copy">© 2026 oliverclarke.dev</span>
-    <span class="footer-copy">Designed &amp; developed by Oliver Clarke.</span>
+    <span class="footer-copy">[process exited with code 0] — designed &amp; developed by Oliver Clarke.</span>
   </footer>
 </div>
 
