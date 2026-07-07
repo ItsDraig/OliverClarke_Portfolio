@@ -51,8 +51,8 @@ nav.classList.toggle('scrolled', window.scrollY > 40);
 const navForm = document.getElementById('navCmdForm');
 const navInput = document.getElementById('navCmdInput');
 const navOutput = document.getElementById('navCmdOutput');
-const navCommandSections = { skills: '#skills', work: '#work', ai: '#ai', about: '#about', contact: '#contact' };
-const navHelpText = 'available: help, skills, work, ai, about, contact, resume, clear';
+const navCommandSections = { skills: '#skills', experience: '#experience', work: '#work', ai: '#ai', about: '#about', contact: '#contact' };
+const navHelpText = 'available: help, skills, experience, work, ai, about, contact, resume, clear';
 
 function runNavCommand(raw) {
 const cmd = raw.trim().toLowerCase();
@@ -132,6 +132,12 @@ const id = setInterval(() => {
 
 const projectCards = Array.from(document.querySelectorAll('[data-project]'));
 initAccordionGroup(projectCards, {
+exclusive: true,
+onOpen: (item) => item.querySelectorAll('.ascii-bar').forEach(animateAsciiBar)
+});
+
+const experienceCards = Array.from(document.querySelectorAll('[data-experience]'));
+initAccordionGroup(experienceCards, {
 exclusive: true,
 onOpen: (item) => item.querySelectorAll('.ascii-bar').forEach(animateAsciiBar)
 });

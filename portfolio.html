@@ -30,6 +30,7 @@
         </form>
         <ul class="nav-links">
           <li><a href="#skills">[skills]</a></li>
+          <li><a href="#experience">[experience]</a></li>
           <li><a href="#work">[work]</a></li>
           <li><a href="#ai">[ai]</a></li>
           <li><a href="#about">[about]</a></li>
@@ -42,6 +43,7 @@
     <div class="nav-cmd-output" id="navCmdOutput" aria-live="polite"></div>
     <div class="mobile-menu" id="mobileMenu">
       <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
       <a href="#work">work</a>
       <a href="#ai">ai</a>
       <a href="#about">about</a>
@@ -146,10 +148,10 @@
           <button class="skill-row-btn" type="button" aria-pressed="false">
             <span class="skill-perm">-rwxr-xr-x</span>
             <span class="skill-cat">languages</span>
-            <span class="skill-name">C# .NET, Java, C++ &amp; Go</span>
+            <span class="skill-name">C# .NET, Java, C &amp; Go</span>
             <span class="skill-toggle" aria-hidden="true">+</span>
           </button>
-          <p class="skill-desc sr-only">Unity, Object Oriented Programming, systems design and large project architecture. Recently picked up C++ and Go, with hands-on experience in memory management and performance optimization.</p>
+          <p class="skill-desc sr-only">Unity, Object Oriented Programming, systems design and large project architecture. Currently studying C and exploring Go, building foundational understanding of memory management and performance considerations.</p>
         </div>
 
         <div class="skill-row" data-skill-item data-skill-cat="ai toolkit">
@@ -190,10 +192,158 @@
   </div>
 </section>
 
+<!-- Experience -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label reveal"><span class="section-label-num">02</span> // experience.log</div>
+    <div class="term-window reveal-term">
+      <div class="term-titlebar"><span>~/oliver$ jobs -l --verbose</span></div>
+      <div class="term-body projects-list">
+
+        <div class="project-card" data-experience>
+          <button class="project-row project-btn" type="button" aria-expanded="false">
+            <div>
+              <div class="project-meta">
+                <span class="project-hash">#e2a719</span>
+                <span class="project-tag">aug 2024 — present</span>
+                <span class="project-tag">current</span>
+              </div>
+              <div class="project-title">Fullport Dev — Full-Stack Web Developer</div>
+              <div class="project-desc">
+                Architected a LangChain RAG pipeline for LLM integrations across two client SaaS products, built full-stack
+                components in Svelte and React, and shipped a complete Stripe billing system alongside a voice-to-text
+                feedback feature.
+              </div>
+              <div class="project-stack">
+                <span class="stack-pill">langchain</span>
+                <span class="stack-pill">rag</span>
+                <span class="stack-pill">svelte</span>
+                <span class="stack-pill">react</span>
+                <span class="stack-pill">stripe</span>
+                <span class="stack-pill">llm apis</span>
+              </div>
+            </div>
+            <div class="project-toggle">+</div>
+          </button>
+          <div class="project-expand" aria-hidden="true">
+            <div class="project-expand-inner">
+              <div class="project-expand-content">
+                <div>
+                  <div class="project-detail-label">$ cat README.md</div>
+                  <div class="project-detail-text">
+                    Full-stack web developer working across two client SaaS products. Designed and built a LangChain-based
+                    RAG pipeline to ground LLM integrations in client-specific data, cutting token usage by up to 70% through
+                    tighter context retrieval and prompt design. Built full-stack components in Svelte and React, profiling
+                    and restructuring data loading to cut page load times by up to 40%. Built and integrated a complete
+                    Stripe billing system covering subscriptions, webhooks, plan changes, failed payments, and prorations.
+                    Also shipped a voice-to-text feature that improved feedback capture rates by roughly 50%.
+                  </div>
+                </div>
+                <div class="project-insights">
+                  <div class="project-detail-label">$ ./benchmark.sh --snapshot</div>
+                  <div class="project-metrics">
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">token usage</span>
+                        <span class="project-metric-value">-70%</span>
+                      </div>
+                      <span class="ascii-bar" data-level="70" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">page load time</span>
+                        <span class="project-metric-value">-40%</span>
+                      </div>
+                      <span class="ascii-bar" data-level="40" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">feedback capture</span>
+                        <span class="project-metric-value">+50%</span>
+                      </div>
+                      <span class="ascii-bar" data-level="50" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-experience>
+          <button class="project-row project-btn" type="button" aria-expanded="false">
+            <div>
+              <div class="project-meta">
+                <span class="project-hash">#3a9c04</span>
+                <span class="project-tag">jan 2021 — jun 2024</span>
+              </div>
+              <div class="project-title">Propel Virtual Reality — VR &amp; Simulation Developer</div>
+              <div class="project-desc">
+                Designed reusable architectural systems in Unity/C# across multiple VR projects with a team of 5,
+                delivering simulations for CAMH, Queen's University, uOttawa, and Lockheed Martin.
+              </div>
+              <div class="project-stack">
+                <span class="stack-pill">unity</span>
+                <span class="stack-pill">c#</span>
+                <span class="stack-pill">vr / simulation</span>
+                <span class="stack-pill">systems design</span>
+              </div>
+            </div>
+            <div class="project-toggle">+</div>
+          </button>
+          <div class="project-expand" aria-hidden="true">
+            <div class="project-expand-inner">
+              <div class="project-expand-content">
+                <div>
+                  <div class="project-detail-label">$ cat README.md</div>
+                  <div class="project-detail-text">
+                    Spent over three years building VR and simulation software with Propel Virtual Reality. Designed
+                    reusable architectural systems in Unity/C# that were shared across multiple client projects rather
+                    than rebuilt each time, working alongside a team of 5 engineers. Delivered training and simulation
+                    experiences for CAMH, Queen's University, uOttawa, and Lockheed Martin, each with distinct hardware,
+                    interaction, and use-case constraints.
+                  </div>
+                </div>
+                <div class="project-insights">
+                  <div class="project-detail-label">$ ./benchmark.sh --snapshot</div>
+                  <div class="project-metrics">
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">team</span>
+                        <span class="project-metric-value">5 engineers</span>
+                      </div>
+                      <span class="ascii-bar" data-level="60" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">clients delivered</span>
+                        <span class="project-metric-value">CAMH, Queen's, uOttawa, Lockheed Martin</span>
+                      </div>
+                      <span class="ascii-bar" data-level="85" aria-hidden="true"></span>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric-label-row">
+                        <span class="project-metric-label">architecture</span>
+                        <span class="project-metric-value">reusable systems</span>
+                      </div>
+                      <span class="ascii-bar" data-level="80" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Projects -->
 <section id="work">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">02</span> // work.log</div>
+    <div class="section-label reveal"><span class="section-label-num">03</span> // work.log</div>
     <div class="term-window reveal-term">
       <div class="term-titlebar"><span>~/oliver$ git log --oneline --stat</span></div>
       <div class="term-body projects-list">
@@ -257,17 +407,9 @@
                     </div>
                   </div>
                   <div class="project-links">
-                    <a href="https://github.com/ItsDraig/LetsCook-frontend" target="_blank" class="project-link github">./github --frontend</a>
+                    <a href="https://github.com/ItsDraig/LetsCook-frontend" target="_blank" class="project-link live">./github --frontend</a>
                     <a href="https://github.com/ItsDraig/LetsCook-backend" target="_blank" class="project-link github">./github --backend</a>
-                    <a href="#" onclick="document.getElementById('dl-modal').style.display='flex'; return false;" class="project-link live">./download.sh</a>
                   </div>
-                  <div id="dl-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:1000;">
-                  <div style="background:var(--surface); border:1px solid var(--border-light); padding:2rem; max-width:360px; width:90%; text-align:center; font-family:var(--ff-ui);">
-                    <h2 style="font-size:15px; color:var(--text-soft); font-weight:600; margin:0 0 0.5rem;">// not available yet</h2>
-                    <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0 0 1.5rem;">This app isn't available for download currently. Check back soon!</p>
-                    <button onclick="document.getElementById('dl-modal').style.display='none'" style="padding:8px 24px; border:1px solid var(--border-light); background:transparent; color:var(--text-soft); font-family:var(--ff-ui); font-size:13px; cursor:pointer;">[ got it ]</button>
-                  </div>
-                </div>
                 </div>
               </div>
             </div>
@@ -416,7 +558,7 @@
 <!-- AI Usage -->
 <section id="ai">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">03</span> // ai-workflow.pipe</div>
+    <div class="section-label reveal"><span class="section-label-num">04</span> // ai-workflow.pipe</div>
     <div class="ai-grid">
       <div class="ai-text reveal">
         <p>
@@ -517,7 +659,7 @@
 <!-- About -->
 <section id="about">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">04</span> // about.yml</div>
+    <div class="section-label reveal"><span class="section-label-num">05</span> // about.yml</div>
     <div class="about-grid">
       <div class="term-window reveal-term">
         <div class="term-titlebar"><span>~/oliver$ cat about.md</span></div>
@@ -551,7 +693,7 @@
 <!-- Contact -->
 <section id="contact">
   <div class="container">
-    <div class="section-label reveal"><span class="section-label-num">05</span> // contact.sh</div>
+    <div class="section-label reveal"><span class="section-label-num">06</span> // contact.sh</div>
     <div class="contact-inner">
       <div class="reveal">
         <h2 class="contact-heading">$ ./build-something <span class="contact-heading-accent">--together</span></h2>
